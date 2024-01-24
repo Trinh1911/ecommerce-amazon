@@ -7,6 +7,7 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { Col, Row } from "react-bootstrap";
 import ProductItem from "../components/ProductItem";
+import { Helmet } from "react-helmet-async";
 
 type State = {
   products: Product[];
@@ -62,13 +63,18 @@ const HomePage = () => {
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
-    <Row>
-      {products.map((product) => (
-        <Col key={product.slug} sm={6} md={4} lg={3}>
-          <ProductItem product={product} />
-        </Col>
-      ))}
-    </Row>
+    <>
+      <Helmet>
+        <title>Amazon</title>
+      </Helmet>
+      <Row>
+        {products.map((product) => (
+          <Col key={product.slug} sm={6} md={4} lg={3}>
+            <ProductItem product={product} />
+          </Col>
+        ))}
+      </Row>
+    </>
   );
 };
 

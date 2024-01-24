@@ -1,12 +1,12 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 function App() {
   return (
     <div className="vh-100">
       <header>
         <Navbar bg="dark" variant="dark" expand="lg">
           <Container>
-            <Navbar.Brand>Amazon</Navbar.Brand>
+            <Navbar.Brand><Link to='/'>Amazon</Link></Navbar.Brand>
           </Container>
           <Nav>
             <a href="/cart" className="nav-link">
