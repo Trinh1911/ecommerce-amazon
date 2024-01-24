@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { Outlet } from "react-router-dom";
 function App() {
   return (
     <div className="vh-100">
@@ -18,7 +19,9 @@ function App() {
         </Navbar>
       </header>
       <main>
-        <Container className="mt-3"></Container>
+        <Container className="mt-3">
+          <Outlet/>
+        </Container>
       </main>
       <footer>
         <div className="text-center">All right reserved</div>
