@@ -4,6 +4,8 @@ import { sampleProducts } from './data'
 import dotenv from 'dotenv'
 import express from 'express'
 import mongoose from 'mongoose'
+import { productRouter } from './routers/productRouter'
+import { seedRouter } from './routers/seedRouter'
 dotenv.config()
 
 const MONGODB_URI =
@@ -24,12 +26,9 @@ app.use(
     origin: ['http://localhost:5173'],
   })
 )
-app.get('/api/products', (req: Request, res: Response) => {
-  res.json(sampleProducts)
-})
-app.get('/api/products/:slug', (req: Request, res: Response) => {
-  res.json(sampleProducts.find((x) => x.slug === req.params.slug))
-})
+app.use('/api/products', productRouter)
+app.use('/api/seed', seedRouter)
+
 
 const PORT = 4000
 app.listen(PORT, () => {
