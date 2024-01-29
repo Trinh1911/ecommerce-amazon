@@ -2,29 +2,35 @@ import { useContext, useEffect } from "react";
 import { Badge, Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import { Store } from "./Store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { LinkContainer } from "react-router-bootstrap";
 function App() {
   const {
     state: { mode, cart },
     dispatch,
-  } = useContext(Store)
+  } = useContext(Store);
 
   useEffect(() => {
-    document.body.setAttribute('data-bs-theme', mode)
-  }, [mode])
+    document.body.setAttribute("data-bs-theme", mode);
+  }, [mode]);
 
   const switchModeHandler = () => {
-    dispatch({ type: 'SWITCH_MODE' })
-  }
+    dispatch({ type: "SWITCH_MODE" });
+  };
   return (
     <div className="vh-100">
+      <ToastContainer position="bottom-center" limit={1} />
       <header>
         <Navbar bg="dark" variant="dark" expand="lg">
           <Container>
-            <Navbar.Brand><Link to='/'>Amazon</Link></Navbar.Brand>
+            <LinkContainer to="/">
+              <Navbar.Brand>tsamazona</Navbar.Brand>
+            </LinkContainer>
           </Container>
           <Nav>
-          <Button variant={mode} onClick={switchModeHandler}>
-              <i className={mode === 'light' ? 'fa fa-sun' : 'fa fa-moon'}></i>
+            <Button variant={mode} onClick={switchModeHandler}>
+              <i className={mode === "light" ? "fa fa-sun" : "fa fa-moon"}></i>
             </Button>
             <Link to="/cart" className="nav-link">
               Cart
@@ -42,7 +48,7 @@ function App() {
       </header>
       <main>
         <Container className="mt-3">
-          <Outlet/>
+          <Outlet />
         </Container>
       </main>
       <footer>
