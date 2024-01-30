@@ -5,13 +5,15 @@ import Rating from "./Rating";
 import { useContext } from "react";
 import { Store } from "../Store";
 import { CartItem } from "../types/Cart";
-import { convertProductToCartItem } from "../utils";
+import { convertProductToCartItem, convertProductToWhistList } from "../utils";
 import { toast } from "react-toastify";
+import { WhistListItem } from "../types/WhistList";
 
 const ProductItem = ({ product }: { product: Product }) => {
   const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems },
+    whistlist: { WhistListItems },
   } = state;
 
   const addToCartHandler = (item: CartItem) => {
@@ -27,6 +29,16 @@ const ProductItem = ({ product }: { product: Product }) => {
     });
     toast.success("Product added to the cart");
   };
+  const addToWhistList = (item: WhistListItem) => {
+    const existWhist = WhistListItems.find((x: any) => x._id === product._id);
+    const quantity = existWhist ? existWhist.quantity + 1 : 1;
+    dispatch({
+      type: "WhistList_ADD_ITEM",
+      payload: { ...item, quantity },
+    });
+    toast.success("Product added to the whistList");
+  };
+  console.log("WhistListItems", WhistListItems);
   return (
     <Card>
       <Link to={`/product/${product.slug}`}>
@@ -49,6 +61,11 @@ const ProductItem = ({ product }: { product: Product }) => {
             Add to cart
           </Button>
         )}
+        <Button
+          onClick={() => addToWhistList(convertProductToWhistList(product))}
+        >
+          Add to WhistList
+        </Button>
       </Card.Body>
     </Card>
   );

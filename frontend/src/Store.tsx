@@ -1,9 +1,11 @@
 import React from "react";
 import { Cart, CartItem } from "./types/Cart";
+import { WhistList, WhistListItem } from "./types/WhistList";
 
 type AppState = {
   mode: string;
   cart: Cart;
+  whistlist: WhistList
 };
 // initiaState
 const initialState: AppState = {
@@ -28,11 +30,17 @@ const initialState: AppState = {
     taxPrice: 0,
     totalPrice: 0,
   },
+  whistlist: {
+    WhistListItems : localStorage.getItem("WhistListItems")
+    ? JSON.parse(localStorage.getItem("WhistListItems")!)
+    : [],
+  }
 };
 
 type Action =
   | { type: "SWITCH_MODE" }
-  | { type: "CART_ADD_ITEM"; payload: CartItem };
+  | { type: "CART_ADD_ITEM"; payload: CartItem }
+  | { type: "WhistList_ADD_ITEM"; payload: WhistListItem };
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -54,6 +62,21 @@ function reducer(state: AppState, action: Action): AppState {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
       return { ...state, cart: { ...state.cart, cartItems } };
+      case "WhistList_ADD_ITEM":
+        const likeItem = action.payload;
+        const existWhist = state.whistlist.WhistListItems.find(
+          (item: WhistListItem) => item._id === likeItem._id
+        );
+        const WhistListItems = existWhist
+          ? state.whistlist.WhistListItems.map((item: WhistListItem) =>
+          // nnlt sẽ tự hiểu là khi có thêm new item thì quantity tự tăng
+              item._id === existWhist._id ? likeItem : item
+            )
+          : [...state.whistlist.WhistListItems, likeItem];
+  
+        localStorage.setItem("WhistListItems", JSON.stringify(WhistListItems));
+  
+        return { ...state, whistlist: { ...state.whistlist, WhistListItems } };
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { LinkContainer } from "react-router-bootstrap";
 function App() {
   const {
-    state: { mode, cart },
+    state: { mode, cart, whistlist },
     dispatch,
   } = useContext(Store);
 
@@ -37,6 +37,14 @@ function App() {
               {cart.cartItems.length > 0 && (
                 <Badge pill bg="danger">
                   {cart.cartItems.length}
+                </Badge>
+              )}
+            </Link>
+            <Link to="/whistlist" className="nav-link">
+              WhistList
+              {whistlist.WhistListItems.length > 0 && (
+                <Badge pill bg="danger">
+                  {whistlist.WhistListItems.length}
                 </Badge>
               )}
             </Link>
