@@ -18,6 +18,7 @@ import { StoreProvider } from "./Store.tsx";
 import CartPage from "./pages/CartPage.tsx";
 import WhistListPage from "./pages/WhistListPage.tsx";
 import SigninPage from "./pages/SigninPage.tsx";
+import SignupPage from "./pages/SignupPage.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -26,17 +27,18 @@ const router = createBrowserRouter(
       <Route path="cart" element={<CartPage />} />
       <Route path="whistlist" element={<WhistListPage />} />
       <Route path="signin" element={<SigninPage />} />
+      <Route path="signup" element={<SignupPage />} />
       {/* <Route path="dashboard" element={<Dashboard />} /> */}
       {/* ... etc. */}
     </Route>
   )
 );
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <StoreProvider>
       <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
