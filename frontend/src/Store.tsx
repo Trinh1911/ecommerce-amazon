@@ -51,7 +51,8 @@ type Action =
   | { type: "USER_SIGNIN"; payload: UserInfo }
   | { type: "USER_SIGNOUT" }
   | { type: "SAVE_SHIPPING_ADDRESS"; payload: ShippingAddress }
-  | { type: "SAVE_PAYMENT_METHOD"; payload: string };
+  | { type: "SAVE_PAYMENT_METHOD"; payload: string }
+  | { type: "CART_CLEAR" };
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -138,6 +139,8 @@ function reducer(state: AppState, action: Action): AppState {
         ...state,
         cart: { ...state.cart, paymentMethod: action.payload },
       };
+    case "CART_CLEAR":
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
     default:
       return state;
   }
