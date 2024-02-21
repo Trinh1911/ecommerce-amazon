@@ -21,18 +21,18 @@ export const useCreateOrderMutation = () =>
         )
       ).data,
   })
-  export const useGetOrderDetailsQuery = (id: string) =>
+export const useGetOrderDetailsQuery = (id: string) =>
   useQuery({
     queryKey: ['orders', id],
     queryFn: async () => (await apiClient.get<Order>(`api/orders/${id}`)).data,
   })
-  export const useGetPaypalClientIdQuery = () =>
+export const useGetPaypalClientIdQuery = () =>
   useQuery({
     queryKey: ['paypal-clientId'],
     queryFn: async () =>
       (await apiClient.get<{ clientId: string }>(`/api/keys/paypal`)).data,
   })
-  export const usePayOrderMutation = () =>
+export const usePayOrderMutation = () =>
   useMutation({
     mutationFn: async (details: { orderId: string }) =>
       (
@@ -41,4 +41,10 @@ export const useCreateOrderMutation = () =>
           details
         )
       ).data,
+  })
+export const useGetOrderHistoryQuery = () =>
+  useQuery({
+    queryKey: ['order-history'],
+    queryFn: async () =>
+      (await apiClient.get<Order[]>(`/api/orders/mine`)).data,
   })
