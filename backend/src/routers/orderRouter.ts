@@ -4,7 +4,14 @@ import { Order, OrderModel } from '../models/orderModel'
 import { Product } from '../models/productModel'
 import { isAuth } from '../utils'
 export const orderRouter = express.Router()
-
+orderRouter.get(
+  '/mine',
+  isAuth,
+  asyncHandler(async (req: Request, res: Response) => {
+    const orders = await OrderModel.find({ user: req.user._id })
+    res.json(orders)
+  })
+)
 orderRouter.post(
   '/',
   isAuth,
@@ -63,13 +70,5 @@ orderRouter.put(
     } else {
       res.status(404).json({ message: 'Order Not Found' })
     }
-  })
-)
-orderRouter.get(
-  '/mine',
-  isAuth,
-  asyncHandler(async (req: Request, res: Response) => {
-    const orders = await OrderModel.find({ user: req.user._id })
-    res.json(orders)
   })
 )
