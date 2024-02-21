@@ -24,3 +24,10 @@ productRouter.get(
         }
     })
 )
+productRouter.get(
+    '/categories',
+    asyncHandler(async (req, res) => {
+      const categories = await ProductModel.find().distinct('category')
+      res.json(categories)
+    })
+  )
