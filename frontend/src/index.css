@@ -75,3 +75,30 @@ a.header-link:hover,
   margin-left: 16px;
   margin-top: -3px;
 }
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 1;
+  padding: 70px 0 0 10px;
+  border-right: 1px solid #d3d3d3;
+}
+
+.left-sidebar {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 70px);
+  width: 256px;
+  border-right: 1px solid #d3d3d3;
+}
+
+.sidebar-nav li .nav-link {
+  color: #333;
+  font-weight: 500;
+}
+
+.sidebar-content {
+  flex: 1;
+}

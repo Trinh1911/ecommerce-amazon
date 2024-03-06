@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from "react";
 import {
   Badge,
   Button,
@@ -10,24 +10,19 @@ import {
   Nav,
   Navbar,
   NavDropdown,
-} from 'react-bootstrap'
-import { Link, Outlet } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { Store } from './Store'
-import LoadingBox from './components/LoadingBox'
-import MessageBox from './components/MessageBox'
-import { getError } from './utils'
-import { ApiError } from './types/ApiError'
-import { useGetCategoriesQuery } from './Hooks/productHooks'
+} from "react-bootstrap";
+import { Link, Outlet } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Store } from "./Store";
 function App() {
   const {
     state: { mode, cart, whistlist, userInfo },
     dispatch,
   } = useContext(Store);
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
-  const { data: categories, isLoading, error } = useGetCategoriesQuery()
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  // const { data: categories, isLoading, error } = useGetCategoriesQuery();
   useEffect(() => {
     document.body.setAttribute("data-bs-theme", mode);
   }, [mode]);
@@ -47,14 +42,14 @@ function App() {
   return (
     <div className="d-flex flex-column vh-100">
       <ToastContainer position="bottom-center" limit={1} />
-      <header>
+      <header className="z-2">
         <Navbar
           className="d-flex flex-column align-items-stretch p-2 pb-0 mb-3"
           bg="dark"
           variant="dark"
           expand="lg"
         >
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center container">
             <LinkContainer to="/" className="header-link">
               <Navbar.Brand>amazona</Navbar.Brand>
             </LinkContainer>
@@ -67,9 +62,9 @@ function App() {
                   onClick={switchModeHandler}
                 >
                   <i
-                    className={mode === 'light' ? 'fa fa-sun' : 'fa fa-moon'}
-                  ></i>{' '}
-                  {mode === 'light' ? 'Light' : 'Dark'}
+                    className={mode === "light" ? "fa fa-sun" : "fa fa-moon"}
+                  ></i>{" "}
+                  {mode === "light" ? "Light" : "Dark"}
                 </Link>
 
                 {userInfo ? (
@@ -83,14 +78,19 @@ function App() {
                     <LinkContainer to="/orderhistory">
                       <NavDropdown.Item>Order History</NavDropdown.Item>
                     </LinkContainer>
+                    {userInfo?.isAdmin && (
+                      <LinkContainer to="/dashboard">
+                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                      </LinkContainer>
+                    )}
                     <NavDropdown.Divider />
                     <Link
                       className="dropdown-item"
                       to="#signout"
                       onClick={signoutHandler}
                     >
-                      {' '}
-                      Sign Out{' '}
+                      {" "}
+                      Sign Out{" "}
                     </Link>
                   </NavDropdown>
                 ) : (
@@ -100,9 +100,6 @@ function App() {
                     </LinkContainer>
                   </NavDropdown>
                 )}
-                <Link to="/orderhistory" className="nav-link header-link">
-                  Orders
-                </Link>
                 <Link to="/cart" className="nav-link header-link p-0">
                   {
                     <span className="cart-badge">
@@ -122,7 +119,7 @@ function App() {
               </Nav>
             </Navbar.Collapse>
           </div>
-          <div className="sub-header">
+          {/* <div className="sub-header">
             <div className="d-flex">
               <Link
                 to="#"
@@ -131,7 +128,7 @@ function App() {
               >
                 <i className="fas fa-bars"></i> All
               </Link>
-              {['Todays Deal', 'Gifts', 'On Sale'].map((x) => (
+              {["Todays Deal", "Gifts", "On Sale"].map((x) => (
                 <Link
                   key={x}
                   className="nav-link header-link p-1 px-3"
@@ -141,7 +138,7 @@ function App() {
                 </Link>
               ))}
             </div>
-          </div>
+          </div> */}
         </Navbar>
       </header>
 
@@ -152,11 +149,11 @@ function App() {
         ></div>
       )}
 
-      <div
+      {/* <div
         className={
           sidebarIsOpen
-            ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
-            : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
+            ? "active-nav side-navbar d-flex justify-content-between flex-wrap flex-column"
+            : "side-navbar d-flex justify-content-between flex-wrap flex-column"
         }
       >
         <ListGroup variant="flush">
@@ -200,7 +197,7 @@ function App() {
             ))
           )}
         </ListGroup>
-      </div>
+      </div> */}
 
       <main>
         <Container className="mt-3">

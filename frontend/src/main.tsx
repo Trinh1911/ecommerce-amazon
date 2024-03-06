@@ -23,10 +23,15 @@ import ShippingAddressPage from "./pages/ShippingAddressPage.tsx";
 import PaymentMethodPage from "./pages/PaymentMethodPage.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import PlaceOrderPage from "./pages/PlaceOrderPage.tsx";
-import OrderPage from './pages/OrderPage.tsx'
-import OrderHistoryPage from './pages/OrderHistoryPage.tsx'
-import ProfilePage from './pages/ProfilePage.tsx'
+import OrderPage from "./pages/OrderPage.tsx";
+import OrderHistoryPage from "./pages/OrderHistoryPage.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import Dashboard from "./pages/Dashboard.tsx";
+import ProtectedRouteAdmin from "./components/ProtectedRouteAdmin.tsx";
+import AdminUser from "./components/AdminUser.tsx";
+import AdminProduct from "./components/AdminProduct.tsx";
+import AdminOrder from "./components/AdminOrder.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -45,6 +50,13 @@ const router = createBrowserRouter(
         <Route path="/orderhistory" element={<OrderHistoryPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Route>
+      <Route path="" element={<ProtectedRouteAdmin />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/adminUser" element={<AdminUser />} />
+        <Route path="/adminProduct" element={<AdminProduct />} />
+        <Route path="/adminOrder" element={<AdminOrder />} />
+      </Route>
+
       {/* <Route path="dashboard" element={<Dashboard />} /> */}
       {/* ... etc. */}
     </Route>
@@ -54,13 +66,13 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <StoreProvider>
-      <PayPalScriptProvider options={{ 'client-id': 'sb' }} deferLoading={true}>
-      <HelmetProvider>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </HelmetProvider>
+      <PayPalScriptProvider options={{ "client-id": "sb" }} deferLoading={true}>
+        <HelmetProvider>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </HelmetProvider>
       </PayPalScriptProvider>
     </StoreProvider>
   </React.StrictMode>
