@@ -29,9 +29,9 @@ import ProfilePage from "./pages/ProfilePage.tsx";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Dashboard from "./pages/Dashboard.tsx";
 import ProtectedRouteAdmin from "./components/ProtectedRouteAdmin.tsx";
-import AdminUser from "./components/AdminUser.tsx";
-import AdminProduct from "./components/AdminProduct.tsx";
-import AdminOrder from "./components/AdminOrder.tsx";
+import AdminUser from "./components/Admin/AdminUser.tsx";
+import AdminProduct from "./components/Admin/AdminProduct.tsx";
+import AdminOrder from "./components/Admin/AdminOrder.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>

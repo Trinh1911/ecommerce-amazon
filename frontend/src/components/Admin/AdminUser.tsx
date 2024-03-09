@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminUser = () => {
   return (
-    <div>AdminUser</div>
+    <div>Quản Lí Người Dùng</div>
   )
 }
 

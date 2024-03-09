@@ -204,9 +204,6 @@ function App() {
           <Outlet />
         </Container>
       </main>
-      <footer>
-        <div className="text-center">All rights reserved</div>
-      </footer>
     </div>
   );
 }
