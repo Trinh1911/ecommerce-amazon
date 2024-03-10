@@ -14,6 +14,8 @@ export default function ProfilePage() {
   const [name, setName] = useState(userInfo!.name)
   const [email, setEmail] = useState(userInfo!.email)
   const [password, setPassword] = useState('')
+  const [phone, setPhone] = useState('')
+  const [address, setAddress] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
   const { mutateAsync: updateProfile, isLoading } = useUpdateProfileMutation()
@@ -29,6 +31,8 @@ export default function ProfilePage() {
         name,
         email,
         password,
+        address,
+        phone
       })
       dispatch({ type: 'USER_SIGNIN', payload: data })
       localStorage.setItem('userInfo', JSON.stringify(data))
@@ -74,6 +78,20 @@ export default function ProfilePage() {
           <Form.Control
             type="password"
             onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>phone</Form.Label>
+          <Form.Control
+            type="text"
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>address</Form.Label>
+          <Form.Control
+            type="text"
+            onChange={(e) => setAddress(e.target.value)}
           />
         </Form.Group>
         <div className="mb-3">

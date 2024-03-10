@@ -11,6 +11,10 @@ export class User {
   public password!: string
   @prop({ required: true, default: false })
   public isAdmin!: boolean
+  @prop({required: false})
+  public phone!: string
+  @prop({required: false})
+  public address!: string
 }
 
 export const UserModel = getModelForClass(User)

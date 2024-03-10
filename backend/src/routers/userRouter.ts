@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express'
 import asyncHandler from 'express-async-handler'
 import bcrypt from 'bcryptjs'
 import { User, UserModel } from '../models/userModel'
-import { generateToken, isAuth } from '../utils'
+import { generateToken, isAuth, isAuthAdmin } from '../utils'
 
 export const userRouter = express.Router()
 // POST /api/users/signin
@@ -50,6 +50,8 @@ userRouter.put(
     if (user) {
       user.name = req.body.name || user.name
       user.email = req.body.email || user.email
+      user.address = req.body.address || user.address
+      user.phone = req.body.phone || user.phone
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, 8)
       }
@@ -58,6 +60,8 @@ userRouter.put(
         _id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
+        address: updatedUser.address,
+        phone: updatedUser.phone,
         isAdmin: updatedUser.isAdmin,
         token: generateToken(updatedUser),
       })
@@ -65,5 +69,13 @@ userRouter.put(
     }
 
     res.status(404).json({ message: 'User not found' })
+  })
+)
+userRouter.get(
+  '/getAllUsers',
+  isAuthAdmin,
+  asyncHandler(async (req, res) => {
+      const allUser = await UserModel.find()
+      res.json(allUser)
   })
 )
