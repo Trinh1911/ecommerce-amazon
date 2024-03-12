@@ -66,21 +66,24 @@ export const useGetAllUser = () =>
     queryFn: async () =>
       (await apiClient.get<UserInfo[]>(`/api/users/getAllUsers`)).data,
   })
-export const useUpdateUserMutation = (id: string) =>
+export const useUpdateUserMutation = () =>
   useMutation({
     mutationFn: async ({
+      id,
       name,
       email,
       address,
       phone
     }: {
+      id: string,
       name: string
       email: string
       address: string
       phone: string
     }) =>
       (
-        await apiClient.put<UserInfo>(`api/users/updateUser/${id}`, {
+        await apiClient.put<UserInfo>(`api/users/updateUser`, {
+          id,
           name,
           email,
           address,

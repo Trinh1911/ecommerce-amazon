@@ -82,10 +82,11 @@ userRouter.get(
 )
 // admin update user
 userRouter.put(
-  '/updateUser/:id',
+  '/updateUser',
   isAuth,
   asyncHandler(async (req: Request, res: Response) => {
-    const user = await UserModel.findById(req.params.id)
+    const userId = req.body.id;
+    const user = await UserModel.findById(userId)
     if (user) {
       user.name = req.body.name || user.name
       user.email = req.body.email || user.email
