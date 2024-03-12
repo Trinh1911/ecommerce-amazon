@@ -42,6 +42,7 @@ userRouter.post(
     })
   })
 )
+// update profile
 userRouter.put(
   '/profile',
   isAuth,
@@ -75,7 +76,34 @@ userRouter.get(
   '/getAllUsers',
   isAuthAdmin,
   asyncHandler(async (req, res) => {
-      const allUser = await UserModel.find()
-      res.json(allUser)
+    const allUser = await UserModel.find()
+    res.json(allUser)
+  })
+)
+// admin update user
+userRouter.put(
+  '/updateUser/:id',
+  isAuth,
+  asyncHandler(async (req: Request, res: Response) => {
+    const user = await UserModel.findById(req.params.id)
+    if (user) {
+      user.name = req.body.name || user.name
+      user.email = req.body.email || user.email
+      user.address = req.body.address || user.address
+      user.phone = req.body.phone || user.phone
+      const updatedUser = await user.save()
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        address: updatedUser.address,
+        phone: updatedUser.phone,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser),
+      })
+      return
+    }
+
+    res.status(404).json({ message: 'User not found' })
   })
 )
