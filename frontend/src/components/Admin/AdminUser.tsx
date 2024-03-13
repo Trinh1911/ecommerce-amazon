@@ -11,9 +11,7 @@ import { toast } from "react-toastify";
 import { getError } from "../../utils";
 import { ApiError } from "../../types/ApiError";
 import { Store } from "../../Store";
-import ModalComponent from "../ModalComponent";
-import { Route, Routes } from "react-router-dom";
-
+import Modal from "react-bootstrap/Modal";
 const AdminUser = () => {
   const {
     state: { userInfo },
@@ -33,10 +31,10 @@ const AdminUser = () => {
     setShow(true);
     setIdUser(id);
   };
-  // const handleModal = (id: string) => {
-  //   setShowModal(true);
-  //   setIdDeleted(id);
-  // };
+  const handleModal = (id: string) => {
+    setShowModal(true);
+    setIdDeleted(id);
+  };
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -44,7 +42,7 @@ const AdminUser = () => {
   const { mutateAsync: updateUser } = useUpdateUserMutation(id);
   // get user
   const { data: users, isLoading } = useGetAllUser();
-  const { data: userDeleted } = useDeletedUser();
+  const { mutateAsync: userDeleted } = useDeletedUser(idDeleted);
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
@@ -62,14 +60,15 @@ const AdminUser = () => {
       toast.error(getError(err as ApiError));
     }
   };
-  // const handleSubmitDeleted = async (e: React.SyntheticEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     const data = await userDeleted(idDeleted);
-  //   } catch (err) {
-  //     toast.error(getError(err as ApiError));
-  //   }
-  // };
+  const handleSubmitDeleted = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    try {
+      const data = await userDeleted();
+      setShowModal(false);
+    } catch (err) {
+      toast.error(getError(err as ApiError));
+    }
+  };
   useEffect(() => {
     renderTable();
   }, [users]);
@@ -105,7 +104,7 @@ const AdminUser = () => {
                 >
                   <i className="fas fa-hammer"></i>
                 </div>
-                <div>
+                <div onClick={() => handleModal(user._id)}>
                   <i className="fas fa-trash"></i>
                 </div>
               </td>
@@ -148,6 +147,22 @@ const AdminUser = () => {
               </Form>
             </Offcanvas.Body>
           </Offcanvas>
+          <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Woohoo, you are reading this text in a modal!
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleSubmitDeleted}>
+                Sure
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </tbody>
       </table>
     );

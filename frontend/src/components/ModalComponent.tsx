@@ -3,9 +3,9 @@ import Button from "react-bootstrap/Button";
 interface Props {
   show: boolean;
   handleClose?: () => void;
-  // handleSubmitDeleted?: () => void;
+  handleSubmitDeleted?: () => void;
 }
-const ModalComponent = ({ show, handleClose }: Props) => {
+const ModalComponent = ({ show, handleClose, handleSubmitDeleted }: Props) => {
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -17,9 +17,9 @@ const ModalComponent = ({ show, handleClose }: Props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          {/* <Button variant="primary" onClick={handleSubmitDeleted}>
+          <Button variant="primary" onClick={handleSubmitDeleted}>
             Sure
-          </Button> */}
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

@@ -88,13 +88,9 @@ export const useUpdateUserMutation = (id: string) =>
         })
       ).data,
   })
-  export const useDeletedUser = () =>
+  export const useDeletedUser = (id: string) =>
   useMutation({
-    mutationFn: async ({
-      id
-    }: {
-      id: string
-    }) =>
+    mutationFn: async () =>
       (
         await apiClient.delete<UserInfo>(`api/users/deletedUser/${id}`)
       ).data,
