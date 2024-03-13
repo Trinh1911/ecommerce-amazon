@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useGetAllUser, useUpdateUserMutation } from "../../Hooks/userHooks";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -6,8 +6,14 @@ import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { getError } from "../../utils";
 import { ApiError } from "../../types/ApiError";
+import { Store } from "../../Store";
+import axios from "axios";
 
 const AdminUser = () => {
+  const {
+    state: { userInfo },
+    dispatch,
+  } = useContext(Store);
   // get user
   const { data: users, isLoading, error } = useGetAllUser();
   const [show, setShow] = useState(false);
@@ -21,10 +27,13 @@ const AdminUser = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [id, setIdUser] = useState("");
-  console.log("users", users);
   // update user
   const { mutateAsync: updateUser } = useUpdateUserMutation();
-  const submitHandler = async () => {
+  useEffect(()=> {
+
+  }, [users])
+  const submitHandler = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     try {
       const data = await updateUser({
         id,
@@ -33,12 +42,15 @@ const AdminUser = () => {
         phone,
         name,
       });
+      if (userInfo?._id === id) {
+        dispatch({ type: "USER_SIGNIN", payload: data });
+        localStorage.setItem("userInfo", JSON.stringify(data));
+      }
       toast.success("User updated successfully");
     } catch (err) {
       toast.error(getError(err as ApiError));
     }
   };
-
   return (
     <>
       <div>Quản Lí Người Dùng</div>

@@ -1,12 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import {
-  Badge,
-  Button,
   Container,
-  Form,
-  FormControl,
-  InputGroup,
-  ListGroup,
   Nav,
   Navbar,
   NavDropdown,
@@ -26,7 +20,6 @@ function App() {
   useEffect(() => {
     document.body.setAttribute("data-bs-theme", mode);
   }, [mode]);
-
   const switchModeHandler = () => {
     dispatch({ type: "SWITCH_MODE" });
   };
