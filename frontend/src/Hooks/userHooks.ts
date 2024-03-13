@@ -66,28 +66,36 @@ export const useGetAllUser = () =>
     queryFn: async () =>
       (await apiClient.get<UserInfo[]>(`/api/users/getAllUsers`)).data,
   })
-export const useUpdateUserMutation = () =>
+export const useUpdateUserMutation = (id: string) =>
   useMutation({
     mutationFn: async ({
-      id,
       name,
       email,
       address,
       phone
     }: {
-      id: string,
       name: string
       email: string
       address: string
       phone: string
     }) =>
       (
-        await apiClient.put<UserInfo>(`api/users/updateUser`, {
-          id,
+        await apiClient.put<UserInfo>(`api/users/updateUser/${id}`, {
           name,
           email,
           address,
           phone
         })
+      ).data,
+  })
+  export const useDeletedUser = () =>
+  useMutation({
+    mutationFn: async ({
+      id
+    }: {
+      id: string
+    }) =>
+      (
+        await apiClient.delete<UserInfo>(`api/users/deletedUser/${id}`)
       ).data,
   })

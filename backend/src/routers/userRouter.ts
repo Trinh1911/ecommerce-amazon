@@ -82,10 +82,10 @@ userRouter.get(
 )
 // admin update user
 userRouter.put(
-  '/updateUser',
+  '/updateUser/:id',
   isAuth,
   asyncHandler(async (req: Request, res: Response) => {
-    const userId = req.body.id;
+    const userId = req.params.id;
     const user = await UserModel.findById(userId)
     if (user) {
       user.name = req.body.name || user.name
@@ -94,7 +94,6 @@ userRouter.put(
       user.phone = req.body.phone || user.phone
       const updatedUser = await user.save()
       res.send({
-        _id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
         address: updatedUser.address,
@@ -106,5 +105,21 @@ userRouter.put(
     }
 
     res.status(404).json({ message: 'User not found' })
+  })
+)
+userRouter.delete(
+  '/deletedUser/:id',
+  isAuth,
+  asyncHandler(async (req: Request, res: Response) => {
+
+    const userId = req.params.id;
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      res.status(404).json({ message: 'User not found' })
+    }
+    const result = await UserModel.findByIdAndDelete(userId);
+    res.status(200).json({
+      message: 'User deleted'
+    });
   })
 )
