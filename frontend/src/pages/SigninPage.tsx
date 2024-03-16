@@ -136,7 +136,7 @@ export default function SigninPage() {
                     <Button
                       disabled={isLoading}
                       type="submit"
-                      style={{ background: "rgba(114, 124, 245, 1)" }}
+                      style={{ background: "rgba(114, 124, 245, 1)",boxShadow: "0px 2px 6px 0px rgba(114, 124, 245, 0.5)", border: "none"}}
                     >
                       Log in
                     </Button>
