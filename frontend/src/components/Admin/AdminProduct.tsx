@@ -14,6 +14,7 @@ import { Store } from "../../Store";
 import Modal from "react-bootstrap/Modal";
 import {
   useCreateProductMutation,
+  useDeletedProduct,
   useGetProductsQuery,
 } from "../../Hooks/productHooks";
 
@@ -82,7 +83,7 @@ const AdminProduct = () => {
   const { mutateAsync: updateUser } = useUpdateUserMutation(id);
   // get product
   const { data: products, isLoading } = useGetProductsQuery();
-  const { mutateAsync: userDeleted } = useDeletedUser(idDeleted);
+  const { mutateAsync: productDeleted } = useDeletedProduct(idDeleted);
   // create product
   const { mutateAsync: useCreateProduct } = useCreateProductMutation();
 
@@ -127,7 +128,7 @@ const AdminProduct = () => {
   const handleSubmitDeleted = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const data = await userDeleted();
+      const data = await productDeleted();
       setShowModal(false);
     } catch (err) {
       toast.error(getError(err as ApiError));

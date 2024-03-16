@@ -59,3 +59,10 @@ export const useCreateProductMutation = () =>
         })
       ).data,
   })
+  export const useDeletedProduct = (id: string) =>
+  useMutation({
+    mutationFn: async () =>
+      (
+        await apiClient.delete<Product>(`api/products/deleted-product/${id}`)
+      ).data,
+  })
