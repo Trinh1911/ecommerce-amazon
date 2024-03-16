@@ -57,24 +57,24 @@ const AdminProduct = () => {
   // change avatar
   const handleOnchangeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
-    console.log('file', file)
-    validateFile(file)
+    console.log("file", file);
+    validateFile(file);
   };
   const validateFile = (file: File | null) => {
     if (file) {
-      if (!file.type.startsWith('image/')) {
+      if (!file.type.startsWith("image/")) {
         <Toast>
           <Toast.Body>Please select an image file.</Toast.Body>
-        </Toast>
+        </Toast>;
       } else if (file.size > 1000000) {
         <Toast>
           <Toast.Body>File size is too large.</Toast.Body>
-        </Toast>
+        </Toast>;
       } else {
-        setImage(file);
+        setImage(`../images/${file.name}`);
         <Toast>
           <Toast.Body>again.</Toast.Body>
-        </Toast>
+        </Toast>;
       }
     }
   };
@@ -105,7 +105,7 @@ const AdminProduct = () => {
   // };
   const submitHandlerCreate = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log('file', image)
+    console.log("file", image);
     try {
       const data = await useCreateProduct({
         name,
@@ -119,6 +119,7 @@ const AdminProduct = () => {
         rating,
         numReviews,
       });
+      handleCloseModalCreate()
     } catch (err) {
       toast.error(getError(err as ApiError));
     }
