@@ -16,13 +16,10 @@ import {
   useCreateProductMutation,
   useDeletedProduct,
   useGetProductsQuery,
+  useUpdateProductMutation,
 } from "../../Hooks/productHooks";
 
 const AdminProduct = () => {
-  const {
-    state: { userInfo },
-    dispatch,
-  } = useContext(Store);
   // get user
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -80,33 +77,35 @@ const AdminProduct = () => {
     }
   };
   // update user
-  const { mutateAsync: updateUser } = useUpdateUserMutation(id);
+  const { mutateAsync: updateProduct } = useUpdateProductMutation(id);
   // get product
   const { data: products, isLoading } = useGetProductsQuery();
   const { mutateAsync: productDeleted } = useDeletedProduct(idDeleted);
   // create product
   const { mutateAsync: useCreateProduct } = useCreateProductMutation();
 
-  // const submitHandler = async (e: React.SyntheticEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     const data = await updateUser({
-  //       name,
-  //       email,
-  //       address,
-  //       phone,
-  //     });
-  //     if (userInfo?._id === id) {
-  //       dispatch({ type: "USER_SIGNIN", payload: data });
-  //       localStorage.setItem("userInfo", JSON.stringify(data));
-  //     }
-  //   } catch (err) {
-  //     toast.error(getError(err as ApiError));
-  //   }
-  // };
+  const submitHandler = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    try {
+      const data = await updateProduct({
+        name,
+        slug,
+        image,
+        brand,
+        category,
+        description,
+        price,
+        countInStock,
+        rating,
+        numReviews,
+      });
+      handleClose();
+    } catch (err) {
+      toast.error(getError(err as ApiError));
+    }
+  };
   const submitHandlerCreate = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log("file", image);
     try {
       const data = await useCreateProduct({
         name,
@@ -120,7 +119,7 @@ const AdminProduct = () => {
         rating,
         numReviews,
       });
-      handleCloseModalCreate()
+      handleCloseModalCreate();
     } catch (err) {
       toast.error(getError(err as ApiError));
     }
@@ -171,7 +170,7 @@ const AdminProduct = () => {
               </td>
             </tr>
           ))}
-          {/* <Offcanvas show={show} onHide={handleClose}>
+          <Offcanvas show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Chi tiết người dùng</Offcanvas.Title>
             </Offcanvas.Header>
@@ -181,21 +180,63 @@ const AdminProduct = () => {
                   <Form.Label>Name</Form.Label>
                   <Form.Control onChange={(e) => setName(e.target.value)} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="email">
-                  <Form.Label>Email</Form.Label>
+                <Form.Group className="mb-3" controlId="slug">
+                  <Form.Label>Slug</Form.Label>
                   <Form.Control
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
+                    type="slug"
+                    onChange={(e) => setSlug(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="name">
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control onChange={(e) => setPhone(e.target.value)} />
+                <Form.Group className="mb-3" controlId="brand">
+                  <Form.Label>Brand</Form.Label>
+                  <Form.Control onChange={(e) => setBrand(e.target.value)} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="name">
-                  <Form.Label>Address</Form.Label>
-                  <Form.Control onChange={(e) => setAddress(e.target.value)} />
+                <Form.Group className="mb-3" controlId="category">
+                  <Form.Label>Category</Form.Label>
+                  <Form.Control onChange={(e) => setCategory(e.target.value)} />
                 </Form.Group>
+                <Form.Group className="mb-3" controlId="description">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="price">
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control
+                    onChange={(e) => setPrice(Number(e.target.value))}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="countInStock">
+                  <Form.Label>CountInStock</Form.Label>
+                  <Form.Control
+                    onChange={(e) => setCountInStock(Number(e.target.value))}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="rating">
+                  <Form.Label>Rating</Form.Label>
+                  <Form.Control
+                    onChange={(e) => setRating(Number(e.target.value))}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="numReviews">
+                  <Form.Label>NumReviews</Form.Label>
+                  <Form.Control
+                    onChange={(e) => setNumReviews(Number(e.target.value))}
+                  />
+                </Form.Group>
+                <input type="file" onChange={handleOnchangeAvatar}></input>
+                <img
+                  src={image ? image : ""}
+                  style={{
+                    height: "60px",
+                    width: "60px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    marginLeft: "10px",
+                  }}
+                  alt="avatar"
+                />
                 <div className="mb-3 text-center mt-3">
                   <Button
                     disabled={isLoading}
@@ -207,7 +248,7 @@ const AdminProduct = () => {
                 </div>
               </Form>
             </Offcanvas.Body>
-          </Offcanvas> */}
+          </Offcanvas>
           {/* modal deleted */}
           <Modal show={showModal} onHide={handleCloseModal}>
             <Modal.Header closeButton>

@@ -59,10 +59,50 @@ export const useCreateProductMutation = () =>
         })
       ).data,
   })
-  export const useDeletedProduct = (id: string) =>
+export const useDeletedProduct = (id: string) =>
   useMutation({
     mutationFn: async () =>
       (
         await apiClient.delete<Product>(`api/products/deleted-product/${id}`)
+      ).data,
+  })
+export const useUpdateProductMutation = (id: string) =>
+  useMutation({
+    mutationFn: async ({
+      name,
+      slug,
+      image,
+      brand,
+      category,
+      description,
+      price,
+      countInStock,
+      rating,
+      numReviews
+    }: {
+      name: string
+      slug: string
+      image: string
+      brand: string
+      category: string
+      description: string
+      price: number
+      countInStock: number
+      rating: number
+      numReviews: number
+    }) =>
+      (
+        await apiClient.put<Product>(`api/products/update-product/${id}`, {
+          name,
+          slug,
+          image,
+          brand,
+          category,
+          description,
+          price,
+          countInStock,
+          rating,
+          numReviews
+        })
       ).data,
   })
