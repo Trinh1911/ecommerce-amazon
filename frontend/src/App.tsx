@@ -38,13 +38,13 @@ function App() {
       <header className="z-2">
         <Navbar
           className="d-flex flex-column align-items-stretch p-2 pb-0 mb-3"
-          bg="dark"
+          bg="light"
           variant="dark"
           expand="lg"
         >
           <div className="d-flex justify-content-between align-items-center container">
             <LinkContainer to="/" className="header-link">
-              <Navbar.Brand>amazona</Navbar.Brand>
+            <img src="../images/logo.svg" alt="logo"/>
             </LinkContainer>
 
             <Navbar.Collapse>
