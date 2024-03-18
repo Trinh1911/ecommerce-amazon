@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import {
+  Button,
   Container,
+  Dropdown,
+  ListGroup,
   Nav,
   Navbar,
   NavDropdown,
@@ -10,13 +13,18 @@ import { LinkContainer } from "react-router-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Store } from "./Store";
+import LoadingBox from "./components/LoadingBox";
+import MessageBox from "./components/MessageBox";
+import { useGetCategoriesQuery } from "./Hooks/productHooks";
+import { getError } from "./utils";
+import { ApiError } from "./types/ApiError";
 function App() {
   const {
     state: { mode, cart, whistlist, userInfo },
     dispatch,
   } = useContext(Store);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
-  // const { data: categories, isLoading, error } = useGetCategoriesQuery();
+  const { data: categories, isLoading, error } = useGetCategoriesQuery();
   useEffect(() => {
     document.body.setAttribute("data-bs-theme", mode);
   }, [mode]);
@@ -32,19 +40,21 @@ function App() {
     localStorage.removeItem("WhistListItems");
     window.location.href = "/signin";
   };
+  console.log("categories", categories);
   return (
     <div className="d-flex flex-column vh-100">
       <ToastContainer position="bottom-center" limit={1} />
       <header className="z-2">
         <Navbar
-          className="d-flex flex-column align-items-stretch p-2 pb-0 mb-3"
-          bg="light"
+          className="d-flex flex-column align-items-stretch"
+          style={{ padding: "1.25rem 0" }}
+          bg="white"
           variant="dark"
           expand="lg"
         >
           <div className="d-flex justify-content-between align-items-center container">
             <LinkContainer to="/" className="header-link">
-            <img src="../images/logo.svg" alt="logo"/>
+              <img src="../images/logo.svg" alt="logo" />
             </LinkContainer>
 
             <Navbar.Collapse>
@@ -56,7 +66,7 @@ function App() {
                 >
                   <i
                     className={mode === "light" ? "fa fa-sun" : "fa fa-moon"}
-                  ></i>{" "}
+                  ></i>
                   {mode === "light" ? "Light" : "Dark"}
                 </Link>
 
@@ -82,8 +92,7 @@ function App() {
                       to="#signout"
                       onClick={signoutHandler}
                     >
-                      {" "}
-                      Sign Out{" "}
+                      Sign Out
                     </Link>
                   </NavDropdown>
                 ) : (
@@ -100,7 +109,7 @@ function App() {
                     </span>
                   }
                   <svg
-                    fill="#ffffff"
+                    fill="#21313c"
                     viewBox="130 150 200 300"
                     width="40px"
                     height="40px"
@@ -150,16 +159,6 @@ function App() {
         }
       >
         <ListGroup variant="flush">
-          <ListGroup.Item action className="side-navbar-user">
-            <LinkContainer
-              to={userInfo ? `/profile` : `/signin`}
-              onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
-            >
-              <span>
-                {userInfo ? `Hello, ${userInfo.name}` : `Hello, sign in`}
-              </span>
-            </LinkContainer>
-          </ListGroup.Item>
           <ListGroup.Item>
             <div className="d-flex justify-content-between align-items-center">
               <strong>Categories</strong>
@@ -181,7 +180,7 @@ function App() {
             categories!.map((category) => (
               <ListGroup.Item action key={category}>
                 <LinkContainer
-                  to={{ pathname: '/search', search: `category=${category}` }}
+                  to={{ pathname: "/search", search: `category=${category}` }}
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
@@ -191,7 +190,35 @@ function App() {
           )}
         </ListGroup>
       </div> */}
-
+      <div className="wrap-categories">
+        <Dropdown>
+          <Dropdown.Toggle
+            variant="success"
+            id="dropdown-basic"
+            className="button-drop"
+          >
+            <i className="fa fa-bars" /> All Departments
+          </Dropdown.Toggle>
+          {isLoading ? (
+            <LoadingBox />
+          ) : error ? (
+            <MessageBox variant="danger">
+              {getError(error as unknown as ApiError)}
+            </MessageBox>
+          ) : (
+            <Dropdown.Menu>
+              {categories!.map((category) => (
+                <Dropdown.Item className="dropdown-item"
+                  href={`/search?category=${category}`}
+                >
+                  {category}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          )}
+        </Dropdown>
+      </div>
+      <div className="line"></div>
       <main>
         <Container className="mt-3">
           <Outlet />

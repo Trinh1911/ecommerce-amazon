@@ -42,16 +42,19 @@ img.thumbnail {
 
 a.header-link,
 .header-link>a {
-  border: 1px rgb(33, 37, 41) solid;
-  border-radius: 2px;
-  color: white !important;
+  color: #21313c;
   font-weight: bold;
 }
 
 a.header-link:hover,
-.header-link>a:hover {
-  color: white;
-  border: 1px white solid;
+.header-link>a:hover,
+.header-link>a:focus {
+  cursor: pointer;
+  color: #21313c;
+}
+
+.navbar-nav .nav-link.show {
+  color: #21313c;
 }
 
 .header .dropdown-menu,
@@ -70,7 +73,7 @@ a.header-link:hover,
 
 .cart-badge {
   position: absolute;
-  color: #f08000;
+  color: #198754;
   font-weight: bold;
   margin-left: 16px;
   margin-top: -3px;
@@ -101,4 +104,92 @@ a.header-link:hover,
 
 .sidebar-content {
   flex: 1;
+}
+.slider {
+  margin-bottom: 30px;
+}
+
+.wrap-categories {
+  margin: 0 110px;
+  padding-bottom: 16px;
+
+  .button-drop {
+    line-height: 1.6;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 9px 24px;
+    background-color: #0aad0a;
+    border: 1px solid #0aad0a;
+    color: #fff;
+
+    &:hover {
+      background-color: #099309;
+      border-color: #088a08;
+      color: #fff;
+    }
+
+    & i {
+      margin-right: 4px;
+    }
+  }
+
+  .dropdown-item {
+    color: #5c6c75;
+    font-size: 14px;
+    line-height: 26px;
+  }
+}
+
+.line::before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #ecf0ef;
+}
+.carousel-control-prev {
+  left: -75px;
+}
+.carousel-control-next {
+  right: -75px;
+}
+
+.carousel-content {
+  position: absolute;
+  top: 88px;
+  left: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 444px;
+  height: 288px;
+
+  h5 {
+    text-align: left;
+    font-weight: 700;
+    line-height: 1.2;
+    font-size: 3rem;
+    color: #001e2b;
+  }
+
+  p {
+    text-align: left;
+    color: rgb(92, 108, 117);
+    font-size: 18px;
+  }
+
+  Button {
+    width: 124px;
+    height: 40px;
+    background-color: #001e2b;
+    border-color: #001e2b;
+
+    span {
+      margin-right: 10px;
+    }
+
+    i {
+      font-size: 13px;
+    }
+  }
 }
