@@ -23,7 +23,7 @@ const HomePage = () => {
       </Helmet>
       {/* slider */}
       <div className="mt-8 slider">
-        <Carousel data-bs-theme="dark" >
+        <Carousel data-bs-theme="dark">
           <Carousel.Item>
             <img
               className="d-block w-100"
@@ -36,8 +36,9 @@ const HomePage = () => {
                 Introduced a new model for online grocery shopping and
                 convenient home delivery.
               </p>
-              <Button>
-                <span>Shop Now</span><i className="fas fa-arrow-right "></i>
+              <Button className="button-shop">
+                <span>Shop Now</span>
+                <i className="fas fa-arrow-right "></i>
               </Button>
             </Carousel.Caption>
           </Carousel.Item>
@@ -49,22 +50,70 @@ const HomePage = () => {
             />
             <Carousel.Caption className="carousel-content">
               <h5>SuperMarket For Fresh Grocery</h5>
-              <p>Free Shipping to First-Time Customers Only, After promotions and discounts are applied.</p>
-              <Button>
-                <span>Shop Now</span><i className="fas fa-arrow-right "></i>
+              <p>
+                Free Shipping to First-Time Customers Only, After promotions and
+                discounts are applied.
+              </p>
+              <Button className="button-shop">
+                <span>Shop Now</span>
+                <i className="fas fa-arrow-right "></i>
               </Button>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </div>
-
+      {/* introduce */}
       <Row>
+        <div className="col-12 col-md-6 mb-3 mb-lg-0">
+          <div>
+            <div
+              className="rounded introduce-img1"
+              style={{
+                background:
+                  "url(../public/images/image/grocery-banner.png) center cover no-repeat",
+              }}
+            >
+              <h3>Fruits & Vegetables</h3>
+              <p>Get Upto</p>
+              <Button className="button-shop">
+                <span>Shop Now</span>
+                <i className="fas fa-arrow-right "></i>
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 mb-3 mb-lg-0">
+          <div>
+            <div
+              className="rounded introduce-img2"
+              style={{
+                background:
+                  "url(../public/images/image/grocery-banner-2.jpg) center cover no-repeat",
+              }}
+            >
+              <h3>Fruits & Vegetables</h3>
+              <p>Get Upto</p>
+              <Button className="button-shop">
+                <span>Shop Now</span>
+                <i className="fas fa-arrow-right "></i>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Row>
+      {/* Popular Products */}
+      <div className="container">
+        <div className="mb-6">
+          <h3 className="mb-0">Popular Products</h3>
+        </div>
+        <div className="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3">
         {products!.map((product) => (
           <Col key={product.slug} sm={6} md={4} lg={3}>
             <ProductItem product={product} />
           </Col>
         ))}
-      </Row>
+        </div>
+      </div>
     </>
   );
 };

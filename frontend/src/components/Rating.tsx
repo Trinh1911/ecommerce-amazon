@@ -64,9 +64,14 @@ const Rating = ({ rating, numReviews, caption }: Props) => {
       {caption ? (
         <span>{caption}</span>
       ) : numReviews != 0 ? (
-        <span>{' ' + numReviews + ' reviews'}</span>
+        <span>
+          <span style={{ color: "rgba(92,108,117,.75)" }}>{rating}</span>{" "}
+          <span style={{ color: "rgba(92,108,117,.75)" }}>
+            {"(" + numReviews + ")"}
+          </span>
+        </span>
       ) : (
-        ''
+        ""
       )}
     </div>
   );

@@ -45,7 +45,7 @@ const ProductItem = ({ product }: { product: Product }) => {
         <img src={product.image} alt={product.name} className="card-img-top" />
       </Link>
       <Card.Body>
-        <Link to={`/product/${product.slug}`}>
+        <Link to={`/product/${product.slug}`} style={{textDecoration: "none"}}>
           <Card.Title>{product.name}</Card.Title>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
