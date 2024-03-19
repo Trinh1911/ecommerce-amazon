@@ -40,38 +40,53 @@ const ProductItem = ({ product }: { product: Product }) => {
   };
   console.log("WhistListItems", WhistListItems);
   return (
-    <Card>
-      <Link to={`/product/${product.slug}`}>
-        <img src={product.image} alt={product.name} className="card-img-top" />
-      </Link>
-      <Card.Body>
-        <Link to={`/product/${product.slug}`} style={{textDecoration: "none"}}>
-          <Card.Title>{product.name}</Card.Title>
+    <>
+      <Card className="card-product">
+        <Link to={`/product/${product.slug}`}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="card-img-top"
+          />
         </Link>
-        <Rating rating={product.rating} numReviews={product.numReviews} />
-        <div className="d-flex justify-content-between align-items-center mt-3">
-          <Card.Text className="m-0 price" >${product.price}</Card.Text>
-          {product.countInStock === 0 ? (
-            <Button variant="light" disabled>
-              Out of stock
-            </Button>
-          ) : (
-            <Button 
-              className="button-add"
-              onClick={() => addToCartHandler(convertProductToCartItem(product))}
-            >
-              <i className="fas fa-plus"></i>
-              <span>Add</span>
-            </Button>
-          )}
-        </div>
-        {/* <Button
-          onClick={() => addToWhistList(convertProductToWhistList(product))}
-        >
-          Add to WhistList
-        </Button> */}
-      </Card.Body>
-    </Card>
+        <Card.Body>
+          <Link
+            to={`/product/${product.slug}`}
+            style={{ textDecoration: "none" }}
+          >
+            <Card.Title>{product.name}</Card.Title>
+          </Link>
+          <div className="tools-react">
+            <i className="fas fa-eye "></i>
+            <i className="fas fa-heart "></i>
+          </div>
+          <Rating rating={product.rating} numReviews={product.numReviews} />
+          <div className="d-flex justify-content-between align-items-center mt-3">
+            <Card.Text className="m-0 price">${product.price}</Card.Text>
+            {product.countInStock === 0 ? (
+              <Button variant="light" disabled>
+                Out of stock
+              </Button>
+            ) : (
+              <Button
+                className="button-add"
+                onClick={() =>
+                  addToCartHandler(convertProductToCartItem(product))
+                }
+              >
+                <i className="fas fa-plus"></i>
+                <span>Add</span>
+              </Button>
+            )}
+          </div>
+          {/* <Button
+            onClick={() => addToWhistList(convertProductToWhistList(product))}
+          >
+            Add to WhistList
+          </Button> */}
+        </Card.Body>
+      </Card>
+    </>
   );
 };
 

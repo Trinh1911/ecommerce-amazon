@@ -5,15 +5,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .mx-80 {
   margin: 80px 0;
 }
+
 .mb-24 {
   margin-bottom: 24px;
 }
+
 .col-width {
   width: fit-content !important;
 }
+
 .rating span {
   font-size: 12px;
   color: #ffc000;
@@ -244,12 +248,48 @@ a.header-link:hover,
   font-size: 13px;
   font-weight: 600;
   padding: 4px 8px;
+
   span {
     margin-left: 4px;
   }
+
+  &:hover {
+    background-color: #099309;
+    border-color: #088a08;
+  }
 }
+
 .price {
   color: rgb(0, 30, 43);
   font-weight: 500;
   font-size: 14px;
+}
+
+.card-product {
+  position: relative;
+
+  &:hover {
+    border: solid 1px #0aad0a;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, .12);
+  }
+}
+
+.tools-react {
+  position: absolute;
+  top: 54%;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  i {
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    display: block;
+    background-color: #fff;
+    border-radius: .5rem;
+  }
 }

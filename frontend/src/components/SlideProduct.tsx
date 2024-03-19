@@ -7,7 +7,7 @@ interface Props {
 }
 function SlideProduct({ products }: Props) {
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 5,
     slidesToScroll: 1,
