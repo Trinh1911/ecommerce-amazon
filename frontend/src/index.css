@@ -5,7 +5,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.mx-80 {
+  margin: 80px 0;
+}
+.mb-24 {
+  margin-bottom: 24px;
+}
+.col-width {
+  width: fit-content !important;
+}
 .rating span {
   font-size: 12px;
   color: #ffc000;
@@ -223,8 +231,25 @@ a.header-link:hover,
     font-size: 13px;
   }
 }
+
 .card-title {
   color: #21313c;
   text-decoration: none;
+  font-size: 14px;
+}
+
+.button-add {
+  background-color: rgb(10, 173, 10);
+  border-color: rgb(10, 173, 10);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 8px;
+  span {
+    margin-left: 4px;
+  }
+}
+.price {
+  color: rgb(0, 30, 43);
+  font-weight: 500;
   font-size: 14px;
 }

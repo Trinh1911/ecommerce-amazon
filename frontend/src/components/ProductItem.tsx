@@ -49,23 +49,27 @@ const ProductItem = ({ product }: { product: Product }) => {
           <Card.Title>{product.name}</Card.Title>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
-        <Card.Text>${product.price}</Card.Text>
-        {product.countInStock === 0 ? (
-          <Button variant="light" disabled>
-            Out of stock
-          </Button>
-        ) : (
-          <Button
-            onClick={() => addToCartHandler(convertProductToCartItem(product))}
-          >
-            Add to cart
-          </Button>
-        )}
-        <Button
+        <div className="d-flex justify-content-between align-items-center mt-3">
+          <Card.Text className="m-0 price" >${product.price}</Card.Text>
+          {product.countInStock === 0 ? (
+            <Button variant="light" disabled>
+              Out of stock
+            </Button>
+          ) : (
+            <Button 
+              className="button-add"
+              onClick={() => addToCartHandler(convertProductToCartItem(product))}
+            >
+              <i className="fas fa-plus"></i>
+              <span>Add</span>
+            </Button>
+          )}
+        </div>
+        {/* <Button
           onClick={() => addToWhistList(convertProductToWhistList(product))}
         >
           Add to WhistList
-        </Button>
+        </Button> */}
       </Card.Body>
     </Card>
   );

@@ -7,6 +7,7 @@ import { useGetProductsQuery } from "../Hooks/productHooks";
 import { getError } from "../utils";
 import { ApiError } from "../types/ApiError";
 import Carousel from "react-bootstrap/Carousel";
+import SlideProduct from "../components/SlideProduct";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -102,16 +103,25 @@ const HomePage = () => {
         </div>
       </Row>
       {/* Popular Products */}
-      <div className="container">
-        <div className="mb-6">
+      <div className="container mx-80">
+        <div className="mb-6 mb-24">
           <h3 className="mb-0">Popular Products</h3>
         </div>
         <div className="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3">
-        {products!.map((product) => (
-          <Col key={product.slug} sm={6} md={4} lg={3}>
-            <ProductItem product={product} />
-          </Col>
-        ))}
+          {products!.map((product) => (
+            <Col key={product.slug}>
+              <ProductItem product={product} />
+            </Col>
+          ))}
+        </div>
+      </div>
+      {/* Best Selling Products */}
+      <div className="container mx-80">
+        <div className="mb-6 mb-24">
+          <h3 className="mb-0">Best Selling Products</h3>
+        </div>
+        <div className="row">
+        <SlideProduct products={products} />
         </div>
       </div>
     </>

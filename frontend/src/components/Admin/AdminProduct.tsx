@@ -58,6 +58,7 @@ const AdminProduct = () => {
     console.log("file", file);
     validateFile(file);
   };
+  console.log("image", image);
   const validateFile = (file: File | null) => {
     if (file) {
       if (!file.type.startsWith("image/")) {
@@ -69,7 +70,7 @@ const AdminProduct = () => {
           <Toast.Body>File size is too large.</Toast.Body>
         </Toast>;
       } else {
-        setImage(`../images/${file.name}`);
+        setImage(`../images/product/${file.name}`);
         <Toast>
           <Toast.Body>again.</Toast.Body>
         </Toast>;
@@ -362,8 +363,8 @@ const AdminProduct = () => {
         style={{
           margin: "10px 0",
           borderRadius: "50rem",
-          backgroundColor: "rgb(114, 124, 245)",
-          boxShadow: "0px 2px 6px 0px rgba(114, 124, 245, 0.5)",
+          backgroundColor: "rgb(47,185,47)",
+          boxShadow: "0px 2px 6px 0px rgb(47,185,47, 0.5)",
           border: "none",
         }}
         onClick={handleShowModalCreate}
