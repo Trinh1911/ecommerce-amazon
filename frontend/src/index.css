@@ -6,6 +6,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .mx-80 {
   margin: 80px 0;
 }
@@ -124,7 +134,7 @@ a.header-link:hover,
 }
 
 .wrap-categories {
-  margin: 0 110px;
+  margin: 0 196px;
   padding-bottom: 16px;
 
   .button-drop {
@@ -272,24 +282,38 @@ a.header-link:hover,
     border: solid 1px #0aad0a;
     box-shadow: 0 5px 12px rgba(0, 0, 0, .12);
   }
+
+  &:hover .tools-react {
+    display: flex;
+    animation: fadeIn ease-in 0.3s;
+  }
 }
 
 .tools-react {
   position: absolute;
   top: 54%;
   right: 10px;
-  display: flex;
+  display: none;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
+  height: 100px;
 
   i {
+    display: block;
     width: 34px;
     height: 34px;
+    cursor: pointer;
+    opacity: 1;
     line-height: 34px;
-    display: block;
+    color: #5c6c75;
     background-color: #fff;
     border-radius: .5rem;
+    box-shadow: 0 2px 4px -1px rgba(145, 158, 171, .2), 0 4px 5px 0 rgba(145, 158, 171, .14), 0 1px 10px 0 rgba(145, 158, 171, .12);
+
+    &:hover {
+      opacity: .8;
+    }
   }
 }
