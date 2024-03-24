@@ -24,6 +24,14 @@
   margin-bottom: 24px;
 }
 
+.fs-24 {
+  font-size: 24px;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
 .col-width {
   width: fit-content !important;
 }
@@ -209,6 +217,14 @@ a.header-link:hover,
   background: url(../public/images/image/grocery-banner.png) no-repeat;
 }
 
+.banner-deal {
+  background: url(../public/images/imageCoutdown/banner-deal.jpg) no-repeat;
+  background-size: cover;
+  height: 470px;
+  width: 310px;
+  padding: 32px 32px 0 32px;
+}
+
 .introduce-img2 {
   background: url(../public/images/image/grocery-banner-2.jpg) no-repeat;
 }
@@ -269,6 +285,25 @@ a.header-link:hover,
   }
 }
 
+.button-add-L {
+  width: 276px;
+  height: 42px;
+  background-color: rgb(10, 173, 10);
+  border-color: rgb(10, 173, 10);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 8px;
+
+  span {
+    margin-left: 4px;
+  }
+
+  &:hover {
+    background-color: #099309;
+    border-color: #088a08;
+  }
+}
+
 .price {
   color: rgb(0, 30, 43);
   font-weight: 500;
@@ -283,7 +318,8 @@ a.header-link:hover,
     box-shadow: 0 5px 12px rgba(0, 0, 0, .12);
   }
 
-  &:hover .tools-react {
+  &:hover .tools-react,
+  &:hover .tools-react-L {
     display: flex;
     animation: fadeIn ease-in 0.3s;
   }
@@ -293,6 +329,16 @@ a.header-link:hover,
   position: absolute;
   top: 54%;
   right: 10px;
+}
+
+.tools-react-L {
+  position: absolute;
+  top: 26%;
+  right: 22px;
+}
+
+.tools-react,
+.tools-react-L {
   display: none;
   flex-direction: column;
   justify-content: space-evenly;
@@ -316,4 +362,19 @@ a.header-link:hover,
       opacity: .8;
     }
   }
+}
+
+.timer-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-segment {
+  width: 60px;
+  height: 60px;
+  font-size: 14px;
+  border: solid 1px #dfe2e1;
+  border-radius: 6px;
+  padding: 5px 0px;
 }

@@ -1,6 +1,6 @@
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import ProductItem from "../components/ProductItem";
 import { Helmet } from "react-helmet-async";
 import { useGetProductsQuery } from "../Hooks/productHooks";
@@ -8,6 +8,9 @@ import { getError } from "../utils";
 import { ApiError } from "../types/ApiError";
 import Carousel from "react-bootstrap/Carousel";
 import SlideProduct from "../components/SlideProduct";
+import ProductCoutDown from "../components/ProductCoutDown";
+import ButtonComponent from "../components/ButtonComponent";
+import { Product } from "../types/Product";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -37,10 +40,7 @@ const HomePage = () => {
                 Introduced a new model for online grocery shopping and
                 convenient home delivery.
               </p>
-              <Button className="button-shop">
-                <span>Shop Now</span>
-                <i className="fas fa-arrow-right "></i>
-              </Button>
+              <ButtonComponent/>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -55,10 +55,7 @@ const HomePage = () => {
                 Free Shipping to First-Time Customers Only, After promotions and
                 discounts are applied.
               </p>
-              <Button className="button-shop">
-                <span>Shop Now</span>
-                <i className="fas fa-arrow-right "></i>
-              </Button>
+              <ButtonComponent/>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
@@ -76,10 +73,7 @@ const HomePage = () => {
             >
               <h3>Fruits & Vegetables</h3>
               <p>Get Upto</p>
-              <Button className="button-shop">
-                <span>Shop Now</span>
-                <i className="fas fa-arrow-right "></i>
-              </Button>
+              <ButtonComponent />
             </div>
           </div>
         </div>
@@ -94,10 +88,7 @@ const HomePage = () => {
             >
               <h3>Fruits & Vegetables</h3>
               <p>Get Upto</p>
-              <Button className="button-shop">
-                <span>Shop Now</span>
-                <i className="fas fa-arrow-right "></i>
-              </Button>
+              <ButtonComponent />
             </div>
           </div>
         </div>
@@ -121,9 +112,38 @@ const HomePage = () => {
           <h3 className="mb-0">Best Selling Products</h3>
         </div>
         <div className="row">
-        <SlideProduct products={products} />
+          <SlideProduct products={products} />
         </div>
       </div>
+      {/* Daily Best Sells */}
+      <div className="container mx-80">
+        <div className="mb-6 mb-24">
+          <h3 className="mb-0">Daily Best Sells</h3>
+        </div>
+        <div className="row g-4 row-cols-lg-4 row-cols-1 row-cols-md-2">
+          <div>
+            <div className="rounded banner-deal">
+              <h3 className="fw-bold text-white fs-24">100% Organic Coffee Beans.</h3>
+              <p className="text-white fw-500">Get the best deal before close.</p>
+              <ButtonComponent
+                style={{
+                  backgroundColor: "#0aad0a",
+                  borderColor: "#0aad0a",
+                }}
+              >
+                <span>Shop Now</span>
+                <i className="fas fa-arrow-right "></i>
+              </ButtonComponent>
+            </div>
+          </div>
+          {products!.map((product) => (
+            <Col key={product.slug}>
+              <ProductCoutDown product={product} />
+            </Col>
+          ))}
+        </div>
+      </div>
+      
     </>
   );
 };
