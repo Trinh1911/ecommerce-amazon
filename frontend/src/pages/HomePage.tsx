@@ -40,7 +40,7 @@ const HomePage = () => {
                 Introduced a new model for online grocery shopping and
                 convenient home delivery.
               </p>
-              <ButtonComponent/>
+              <ButtonComponent />
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -55,7 +55,7 @@ const HomePage = () => {
                 Free Shipping to First-Time Customers Only, After promotions and
                 discounts are applied.
               </p>
-              <ButtonComponent/>
+              <ButtonComponent />
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
@@ -123,8 +123,12 @@ const HomePage = () => {
         <div className="row g-4 row-cols-lg-4 row-cols-1 row-cols-md-2">
           <div>
             <div className="rounded banner-deal">
-              <h3 className="fw-bold text-white fs-24">100% Organic Coffee Beans.</h3>
-              <p className="text-white fw-500">Get the best deal before close.</p>
+              <h3 className="fw-bold text-white fs-24">
+                100% Organic Coffee Beans.
+              </h3>
+              <p className="text-white fw-500">
+                Get the best deal before close.
+              </p>
               <ButtonComponent
                 style={{
                   backgroundColor: "#0aad0a",
@@ -143,7 +147,61 @@ const HomePage = () => {
           ))}
         </div>
       </div>
-      
+      {/* Services */}
+      <section className="my-lg-14 my-8">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 col-lg-3 services">
+              <div className="mb-xl-0">
+                <div className="mb-4">
+                  <img src="./images/icon/clock.svg" alt="clock" />
+                </div>
+                <h3>10 minute grocery now</h3>
+                <p>
+                  Get your order delivered to your doorstep at the earliest from
+                  FreshCart pickup stores near you.
+                </p>
+              </div>
+            </div>
+            <div className="col-md-6 col-lg-3 services">
+              <div className="mb-xl-0">
+                <div className="mb-4">
+                  <img src="./images/icon/clock.svg" alt="clock" />
+                </div>
+                <h3>10 minute grocery now</h3>
+                <p>
+                  Get your order delivered to your doorstep at the earliest from
+                  FreshCart pickup stores near you.
+                </p>
+              </div>
+            </div>
+            <div className="col-md-6 col-lg-3 services">
+              <div className="mb-xl-0">
+                <div className="mb-4">
+                  <img src="./images/icon/clock.svg" alt="clock" />
+                </div>
+                <h3>10 minute grocery now</h3>
+                <p>
+                  Get your order delivered to your doorstep at the earliest from
+                  FreshCart pickup stores near you.
+                </p>
+              </div>
+            </div>
+            <div className="col-md-6 col-lg-3 services">
+              <div className="mb-xl-0">
+                <div className="mb-4">
+                  <img src="./images/icon/clock.svg" alt="clock" />
+                </div>
+                <h3>10 minute grocery now</h3>
+                <p>
+                  Get your order delivered to your doorstep at the earliest from
+                  FreshCart pickup stores near you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
