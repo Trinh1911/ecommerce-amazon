@@ -10,10 +10,12 @@ import Carousel from "react-bootstrap/Carousel";
 import SlideProduct from "../components/SlideProduct";
 import ProductCoutDown from "../components/ProductCoutDown";
 import ButtonComponent from "../components/ButtonComponent";
-import { Product } from "../types/Product";
+import Footer from "../components/Footer";
+import { hideFooter } from "../App";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
+  hideFooter();
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
@@ -148,7 +150,7 @@ const HomePage = () => {
         </div>
       </div>
       {/* Services */}
-      <section className="my-lg-14 my-8">
+      <section className="my-lg-5 my-8">
         <div className="container">
           <div className="row">
             <div className="col-md-6 col-lg-3 services">
@@ -166,36 +168,33 @@ const HomePage = () => {
             <div className="col-md-6 col-lg-3 services">
               <div className="mb-xl-0">
                 <div className="mb-4">
-                  <img src="./images/icon/clock.svg" alt="clock" />
+                  <img src="./images/icon/gift.svg" alt="gift" />
                 </div>
-                <h3>10 minute grocery now</h3>
+                <h3>Best Prices & Offers</h3>
                 <p>
-                  Get your order delivered to your doorstep at the earliest from
-                  FreshCart pickup stores near you.
+                Cheaper prices than your local supermarket, great cashback offers to top it off. Get best pricess & offers.
                 </p>
               </div>
             </div>
             <div className="col-md-6 col-lg-3 services">
               <div className="mb-xl-0">
                 <div className="mb-4">
-                  <img src="./images/icon/clock.svg" alt="clock" />
+                  <img src="./images/icon/package.svg" alt="package" />
                 </div>
-                <h3>10 minute grocery now</h3>
+                <h3>Wide Assortment</h3>
                 <p>
-                  Get your order delivered to your doorstep at the earliest from
-                  FreshCart pickup stores near you.
+                Choose from 5000+ products across food, personal care, household, bakery, veg and non-veg & other categories.
                 </p>
               </div>
             </div>
             <div className="col-md-6 col-lg-3 services">
               <div className="mb-xl-0">
                 <div className="mb-4">
-                  <img src="./images/icon/clock.svg" alt="clock" />
+                  <img src="./images/icon/refresh-cw.svg" alt="refresh-cw" />
                 </div>
-                <h3>10 minute grocery now</h3>
+                <h3>Easy Returns</h3>
                 <p>
-                  Get your order delivered to your doorstep at the earliest from
-                  FreshCart pickup stores near you.
+                Not satisfied with a product? Return it at the doorstep & get a refund within hours. No questions asked policy .
                 </p>
               </div>
             </div>

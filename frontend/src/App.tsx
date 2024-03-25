@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import {
-  Button,
   Container,
   Dropdown,
-  ListGroup,
   Nav,
   Navbar,
   NavDropdown,
@@ -18,6 +16,12 @@ import MessageBox from "./components/MessageBox";
 import { useGetCategoriesQuery } from "./Hooks/productHooks";
 import { getError } from "./utils";
 import { ApiError } from "./types/ApiError";
+import Footer from "./components/Footer";
+let showFooter = true;
+
+export function hideFooter() {
+  showFooter = false;
+}
 function App() {
   const {
     state: { mode, cart, whistlist, userInfo },
@@ -225,6 +229,7 @@ function App() {
           <Outlet />
         </Container>
       </main>
+      {showFooter && <Footer/>}
     </div>
   );
 }
