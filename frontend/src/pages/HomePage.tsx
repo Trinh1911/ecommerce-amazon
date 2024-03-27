@@ -15,6 +15,9 @@ import { hideFooter } from "../App";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
+  const SnackProduct = products?.filter((product) => {
+    return product.brand === "Snack";
+  });
   hideFooter();
   return isLoading ? (
     <LoadingBox />
@@ -142,7 +145,7 @@ const HomePage = () => {
               </ButtonComponent>
             </div>
           </div>
-          {products!.map((product) => (
+          {SnackProduct!.map((product) => (
             <Col key={product.slug}>
               <ProductCoutDown product={product} />
             </Col>
@@ -172,7 +175,8 @@ const HomePage = () => {
                 </div>
                 <h3>Best Prices & Offers</h3>
                 <p>
-                Cheaper prices than your local supermarket, great cashback offers to top it off. Get best pricess & offers.
+                  Cheaper prices than your local supermarket, great cashback
+                  offers to top it off. Get best pricess & offers.
                 </p>
               </div>
             </div>
@@ -183,7 +187,8 @@ const HomePage = () => {
                 </div>
                 <h3>Wide Assortment</h3>
                 <p>
-                Choose from 5000+ products across food, personal care, household, bakery, veg and non-veg & other categories.
+                  Choose from 5000+ products across food, personal care,
+                  household, bakery, veg and non-veg & other categories.
                 </p>
               </div>
             </div>
@@ -194,7 +199,8 @@ const HomePage = () => {
                 </div>
                 <h3>Easy Returns</h3>
                 <p>
-                Not satisfied with a product? Return it at the doorstep & get a refund within hours. No questions asked policy .
+                  Not satisfied with a product? Return it at the doorstep & get
+                  a refund within hours. No questions asked policy .
                 </p>
               </div>
             </div>

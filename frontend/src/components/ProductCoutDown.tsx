@@ -44,7 +44,7 @@ const ProductCoutDown = ({ product }: { product: Product }) => {
     toast.success("Product added to the whistList");
   };
   useEffect(() => {
-    const target = new Date("3/26/2024 23:59:59");
+    const target = new Date("4/28/2024 23:59:59");
 
     const interval = setInterval(() => {
       const now = new Date();
@@ -73,72 +73,78 @@ const ProductCoutDown = ({ product }: { product: Product }) => {
   }, []);
   return (
     <>
-      <Card className="card-product" style={{height: "470px"}}>
-        <Link to={`/product/${product.slug}`} style={{textAlign: "center"}}>
-          <img
-            src={product.image}
-            alt={product.name}
-            style={{width: "220px"}}
-            className="card-img-top"
-          />
-        </Link>
-        <Card.Body>
-          <Link
-            to={`/product/${product.slug}`}
-            style={{ textDecoration: "none" }}
-          >
-            <Card.Title style={{fontSize: "17px", color: "#21313c"}}>{product.name}</Card.Title>
+      {product.brand === "Snack" && (
+        <Card className="card-product" style={{ height: "470px" }}>
+          <Link to={`/product/${product.slug}`} style={{ textAlign: "center" }}>
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{ width: "220px" }}
+              className="card-img-top"
+            />
           </Link>
-          <div className="tools-react-L">
-            <i className="fas fa-eye "></i>
-            <i className="fas fa-heart "></i>
-          </div>
-          <div className="d-flex justify-content-between align-items-center mt-3">
-            <Card.Text className="m-0 price" style={{fontSize: "14px"}}>${product.price}</Card.Text>
-          <Rating rating={product.rating} numReviews={product.numReviews} />
-          </div>
-          {product.countInStock === 0 ? (
+          <Card.Body>
+            <Link
+              to={`/product/${product.slug}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Card.Title style={{ fontSize: "17px", color: "#21313c" }}>
+                {product.name}
+              </Card.Title>
+            </Link>
+            <div className="tools-react-L">
+              <i className="fas fa-eye "></i>
+              <i className="fas fa-heart "></i>
+            </div>
+            <div className="d-flex justify-content-between align-items-center mt-3">
+              <Card.Text className="m-0 price" style={{ fontSize: "14px" }}>
+                ${product.price}
+              </Card.Text>
+              <Rating rating={product.rating} numReviews={product.numReviews} />
+            </div>
+            {product.countInStock === 0 ? (
               <Button variant="light" disabled>
                 Out of stock
               </Button>
             ) : (
-                <Button
-                  className="button-add-L mt-2"
-                  onClick={() =>
-                    addToCartHandler(convertProductToCartItem(product))
-                  }
-                >
-                  <i className="fas fa-plus"></i>
-                  <span>Add to cart</span>
-                </Button>
+              <Button
+                className="button-add-L mt-2"
+                onClick={() =>
+                  addToCartHandler(convertProductToCartItem(product))
+                }
+              >
+                <i className="fas fa-plus"></i>
+                <span>Add to cart</span>
+              </Button>
             )}
-          <div className="mt-3">
-            <div className="d-flex justify-content-between">
-              <div className="timer-segment">
-                <span>{days}</span>
-                <span>Days</span>
-              </div>
-              <div className="timer-segment">
-                <span>{hours}</span>
-                <span>Hours</span>
-              </div>
-              <div className="timer-segment">
-                <span>{minutes}</span>
-                <span>Minutes</span>
-              </div>
-              <div className="timer-segment">
-                <span>{seconds}</span>
-                <span>Seconds</span>
+            <div className="mt-3">
+              <div className="d-flex justify-content-between">
+                <div className="timer-segment">
+                  <span>{days}</span>
+                  <span>Days</span>
+                </div>
+                <div className="timer-segment">
+                  <span>{hours}</span>
+                  <span>Hours</span>
+                </div>
+                <div className="timer-segment">
+                  <span>{minutes}</span>
+                  <span>Minutes</span>
+                </div>
+                <div className="timer-segment">
+                  <span>{seconds}</span>
+                  <span>Seconds</span>
+                </div>
               </div>
             </div>
-          </div>
-          {/* <Button
+            {/* <Button
             onClick={() => addToWhistList(convertProductToWhistList(product))}
           >
             Add to WhistList
           </Button> */}
-        </Card.Body>
-      </Card>
+          </Card.Body>
+        </Card>
+      )}
     </>
   );
 };
