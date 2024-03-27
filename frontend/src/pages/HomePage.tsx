@@ -10,15 +10,13 @@ import Carousel from "react-bootstrap/Carousel";
 import SlideProduct from "../components/SlideProduct";
 import ProductCoutDown from "../components/ProductCoutDown";
 import ButtonComponent from "../components/ButtonComponent";
-import Footer from "../components/Footer";
-import { hideFooter } from "../App";
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
   const SnackProduct = products?.filter((product) => {
     return product.brand === "Snack";
   });
-  hideFooter();
+  // hideFooter();
   return isLoading ? (
     <LoadingBox />
   ) : error ? (

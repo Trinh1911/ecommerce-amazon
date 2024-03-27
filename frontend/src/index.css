@@ -16,6 +16,10 @@
   }
 }
 
+.gray-dark::before {
+  background-color: #595a5c !important;
+}
+
 .mx-80 {
   margin: 80px 0;
 }
@@ -397,12 +401,32 @@ a.header-link:hover,
 }
 
 .footer {
+  padding: 64px 0 24px;
   background-color: #001e2b;
 
   h3 {
+    margin-bottom: 16px;
     color: #fff;
     font-weight: 600;
     font-size: 16px;
     line-height: 16px;
+    text-transform: capitalize;
+  }
+
+  div {
+    color: #5c6c75;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+}
+
+.breadcrumb-item {
+  a {
+    text-decoration: none;
+    padding-left: 16px;
+    color: #0aad0a ;
+&:first-child {
+  padding: 0;
+}
   }
 }
