@@ -38,7 +38,6 @@ const ProductItem = ({ product }: { product: Product }) => {
     });
     toast.success("Product added to the whistList");
   };
-  console.log("WhistListItems", WhistListItems);
   return (
     <>
       <Card className="card-product">

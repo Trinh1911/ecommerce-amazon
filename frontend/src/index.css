@@ -40,9 +40,20 @@
   width: fit-content !important;
 }
 
-.rating span {
-  font-size: 12px;
+.rating-icon i {
+  font-size: 14px;
   color: #ffc000;
+}
+
+.rating {
+  color: rgba(92, 108, 117, 0.75);
+  font-size: 13px;
+  margin: 0 5px;
+}
+
+.numreview {
+  color: rgba(92, 108, 117, 0.75);
+  font-size: 13px;
 }
 
 img.large {
@@ -424,9 +435,26 @@ a.header-link:hover,
   a {
     text-decoration: none;
     padding-left: 16px;
-    color: #0aad0a ;
-&:first-child {
-  padding: 0;
-}
+    color: #0aad0a;
+
+    &:first-child {
+      padding: 0;
+    }
   }
+}
+
+.img-detail {
+  width: 471px;
+  height: 628px;
+}
+
+.product-detail--brand {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0aad0a;
+}
+.product-detail--price {
+ font-size: 21px;
+ font-weight: 700; 
+ margin-bottom: 24px;
 }

@@ -7,12 +7,13 @@ import { convertProductToCartItem, getError } from "../utils";
 import { ApiError } from "../types/ApiError";
 import { Badge, Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import Rating from "../components/Rating";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { Store } from "../Store";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
 
 const ProductPage = () => {
+  const [quantity, setQuantity] = useState(0);
   const params = useParams();
   const { slug } = params;
   const {
@@ -20,11 +21,21 @@ const ProductPage = () => {
     isLoading,
     error,
   } = useGetProductDetailsBySlugQuery(slug!);
+  console.log("product", product);
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
   const navigate = useNavigate();
-
+  const onchange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+  
+    if(!value) {
+      setQuantity(undefined);
+      return;
+    }
+  
+    setQuantity(parseFloat(value));
+  }
   const addToCartHandler = () => {
     const existItem = cart.cartItems.find((x) => x._id === product!._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -39,6 +50,14 @@ const ProductPage = () => {
     toast.success("Product added to the cart");
     navigate("/cart");
   };
+  const hanleChangeCount = (type: string) => {
+    if (type === "increase") {
+        setQuantity(quantity + 1);
+      console.log("quantity: ", quantity);
+    } else {
+        setQuantity(quantity - 1);
+    }
+  };
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
@@ -49,71 +68,97 @@ const ProductPage = () => {
     <MessageBox variant="danger">Page Not Found</MessageBox>
   ) : (
     <>
-    <BreadcrumbComponent brand={product.brand} name={product.name}/>
+      <BreadcrumbComponent brand={product.brand} name={product.name} />
       <div>
         <Row>
-          <Col md={6}>
-            <img className="large" src={product.image} alt={product.name}></img>
+          <Col className="col-md-6 col-xl-5">
+            <img
+              className="img-detail"
+              src={product.image}
+              alt={product.name}
+            ></img>
           </Col>
-          <Col md={3}>
+          <Col className="col-md-6 col-xl-7">
             <ListGroup variant="flush">
-              <ListGroup.Item>
+              <div className="product-detail--brand">{product.brand}</div>
+              <div>
                 <Helmet>
                   <title>{product.name}</title>
                 </Helmet>
                 <h1>{product.name}</h1>
-              </ListGroup.Item>
-              <ListGroup.Item>
+              </div>
+              <div className="mb-4">
                 <Rating
                   rating={product.rating}
                   numReviews={product.numReviews}
+                  styleNumReview={{
+                    color: "#0aad0a",
+                    fontSize: "16px",
+                    marginLeft: "-16px",
+                  }}
+                  styleRating={{ visibility: "hidden" }}
                 ></Rating>
-              </ListGroup.Item>
-              <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
-              <ListGroup.Item>
-                Description:
-                <p>{product.description}</p>
-              </ListGroup.Item>
+              </div>
+              <div className="product-detail--price">${product.price}</div>
+              <div className="line"></div>
             </ListGroup>
+            <Button
+              onClick={() => hanleChangeCount("decrease")}
+              disabled={quantity === 0}
+            >
+              -
+            </Button>
+            <input
+              min={1}
+              value={quantity}
+              max={product.countInStock}
+              onChange={onchange}
+            />
+            <Button
+              onClick={() =>
+                hanleChangeCount("increase")
+              }
+              disabled={quantity === product.countInStock}
+            >
+              +
+            </Button>
           </Col>
-          <Col md={3}>
-            <Card>
-              <Card.Body>
-                <ListGroup variant="flush">
+          <Card>
+            <Card.Body>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Price:</Col>
+                    <Col>${product.price}</Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Status:</Col>
+                    <Col>
+                      {product.countInStock > 0 ? (
+                        <Badge bg="success">In Stock</Badge>
+                      ) : (
+                        <Badge bg="danger">Unavailable</Badge>
+                      )}
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                {product.countInStock > 0 && (
                   <ListGroup.Item>
-                    <Row>
-                      <Col>Price:</Col>
-                      <Col>${product.price}</Col>
-                    </Row>
+                    <div className="d-grid">
+                      <Button
+                        variant="primary"
+                        onClick={() => addToCartHandler()}
+                      >
+                        Add to Cart
+                      </Button>
+                    </div>
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Status:</Col>
-                      <Col>
-                        {product.countInStock > 0 ? (
-                          <Badge bg="success">In Stock</Badge>
-                        ) : (
-                          <Badge bg="danger">Unavailable</Badge>
-                        )}
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-                  {product.countInStock > 0 && (
-                    <ListGroup.Item>
-                      <div className="d-grid">
-                        <Button
-                          variant="primary"
-                          onClick={() => addToCartHandler()}
-                        >
-                          Add to Cart
-                        </Button>
-                      </div>
-                    </ListGroup.Item>
-                  )}
-                </ListGroup>
-              </Card.Body>
-            </Card>
-          </Col>
+                )}
+              </ListGroup>
+            </Card.Body>
+          </Card>
         </Row>
       </div>
     </>
