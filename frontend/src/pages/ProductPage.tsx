@@ -28,14 +28,14 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const onchange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
-  
-    if(!value) {
+
+    if (!value) {
       setQuantity(undefined);
       return;
     }
-  
+
     setQuantity(parseFloat(value));
-  }
+  };
   const addToCartHandler = () => {
     const existItem = cart.cartItems.find((x) => x._id === product!._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -52,10 +52,10 @@ const ProductPage = () => {
   };
   const hanleChangeCount = (type: string) => {
     if (type === "increase") {
-        setQuantity(quantity + 1);
+      setQuantity(quantity + 1);
       console.log("quantity: ", quantity);
     } else {
-        setQuantity(quantity - 1);
+      setQuantity(quantity - 1);
     }
   };
   return isLoading ? (
@@ -102,26 +102,38 @@ const ProductPage = () => {
               <div className="product-detail--price">${product.price}</div>
               <div className="line"></div>
             </ListGroup>
-            <Button
-              onClick={() => hanleChangeCount("decrease")}
-              disabled={quantity === 0}
-            >
-              -
-            </Button>
-            <input
-              min={1}
-              value={quantity}
-              max={product.countInStock}
-              onChange={onchange}
-            />
-            <Button
-              onClick={() =>
-                hanleChangeCount("increase")
-              }
-              disabled={quantity === product.countInStock}
-            >
-              +
-            </Button>
+            <div className="mt-4 d-flex align-items-center">
+              <Button
+                className="button-quantity"
+                onClick={() => hanleChangeCount("decrease")}
+                disabled={quantity === 0}
+              >
+                -
+              </Button>
+              <input
+                className="input-quantity"
+                min={1}
+                value={quantity}
+                max={product.countInStock}
+                onChange={onchange}
+              />
+              <Button
+                className="button-quantity"
+                onClick={() => hanleChangeCount("increase")}
+                disabled={quantity === product.countInStock}
+              >
+                +
+              </Button>
+            </div>
+            {product.countInStock > 0 && (
+              <Button
+                className="button-add add-M mt-2"
+                onClick={() => addToCartHandler()}
+              >
+                <i className="fas fa-folder-open"></i>
+                <span style={{ marginLeft: "8px" }}>Add to cart</span>
+              </Button>
+            )}
           </Col>
           <Card>
             <Card.Body>
@@ -145,16 +157,13 @@ const ProductPage = () => {
                   </Row>
                 </ListGroup.Item>
                 {product.countInStock > 0 && (
-                  <ListGroup.Item>
-                    <div className="d-grid">
-                      <Button
-                        variant="primary"
-                        onClick={() => addToCartHandler()}
-                      >
-                        Add to Cart
-                      </Button>
-                    </div>
-                  </ListGroup.Item>
+                  <Button
+                    className="button-add add-M mt-2"
+                    onClick={() => addToCartHandler()}
+                  >
+                    <i className="fas fa-plus"></i>
+                    <span>Add to cart</span>
+                  </Button>
                 )}
               </ListGroup>
             </Card.Body>

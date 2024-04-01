@@ -74,7 +74,7 @@ const ProductItem = ({ product }: { product: Product }) => {
                 }
               >
                 <i className="fas fa-plus"></i>
-                <span>Add</span>
+                <span style={{ marginLeft: "4px" }}>Add</span>
               </Button>
             )}
           </div>

@@ -286,13 +286,8 @@ a.header-link:hover,
 .button-add {
   background-color: rgb(10, 173, 10);
   border-color: rgb(10, 173, 10);
-  font-size: 13px;
   font-weight: 600;
-  padding: 4px 8px;
-
-  span {
-    margin-left: 4px;
-  }
+  font-size: 13px;
 
   &:hover {
     background-color: #099309;
@@ -300,23 +295,19 @@ a.header-link:hover,
   }
 }
 
-.button-add-L {
+.add-L {
   width: 276px;
   height: 42px;
-  background-color: rgb(10, 173, 10);
-  border-color: rgb(10, 173, 10);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
   padding: 4px 8px;
+}
 
-  span {
-    margin-left: 4px;
-  }
-
-  &:hover {
-    background-color: #099309;
-    border-color: #088a08;
-  }
+.add-M {
+  width: 186px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 16px;
 }
 
 .price {
@@ -453,8 +444,29 @@ a.header-link:hover,
   font-weight: 500;
   color: #0aad0a;
 }
+
 .product-detail--price {
- font-size: 21px;
- font-weight: 700; 
- margin-bottom: 24px;
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.input-quantity {
+  width: 44px;
+  font-size: 15px;
+  height: 40px;
+  padding: 4px 8px;
+  border: 1px solid #ecf0ef;
+  text-align: center;
+  outline: none;
+}
+
+.button-quantity {
+  width: 40px;
+  height: 40px;
+  color: black;
+  border-radius: inherit;
+  border-color: #ecf0ef;
+  background-color: transparent;
+  text-align: center;
 }

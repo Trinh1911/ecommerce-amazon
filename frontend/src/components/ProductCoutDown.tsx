@@ -108,13 +108,13 @@ const ProductCoutDown = ({ product }: { product: Product }) => {
               </Button>
             ) : (
               <Button
-                className="button-add-L mt-2"
+                className="button-add add-L mt-2"
                 onClick={() =>
                   addToCartHandler(convertProductToCartItem(product))
                 }
               >
                 <i className="fas fa-plus"></i>
-                <span>Add to cart</span>
+                <span style={{marginLeft: "4px"}}>Add to cart</span>
               </Button>
             )}
             <div className="mt-3">
