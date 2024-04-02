@@ -6,6 +6,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.btn-primary:active {
+  --bs-btn-active-bg: #ecf0ef;
+  --bs-btn-active-border-color: #ecf0ef;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -39,7 +44,16 @@
 .col-width {
   width: fit-content !important;
 }
-
+.button-left {
+  border-right: none;
+  border-bottom-left-radius: 4px !important;
+  border-top-left-radius: 4px !important;
+}
+.button-right {
+  border-left: none;
+  border-bottom-right-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+}
 .rating-icon i {
   font-size: 14px;
   color: #ffc000;
@@ -293,6 +307,18 @@ a.header-link:hover,
     background-color: #099309;
     border-color: #088a08;
   }
+}
+
+.btn:disabled {
+  background-color: #a7b1ae;
+  border-color: #ecf0ef;
+  color: #001e2b;
+}
+
+.btn:hover{
+  background-color: #ecf0ef;
+  border-color: #ecf0ef;
+  color: #001e2b;
 }
 
 .add-L {

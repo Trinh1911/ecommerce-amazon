@@ -15,6 +15,7 @@ import BreadcrumbComponent from "../components/BreadcrumbComponent";
 const ProductPage = () => {
   const [quantity, setQuantity] = useState(0);
   const params = useParams();
+  const [currentImage, setCurrentImage] = useState(0);
   const { slug } = params;
   const {
     data: product,
@@ -36,6 +37,14 @@ const ProductPage = () => {
 
     setQuantity(parseFloat(value));
   };
+  // const images = [
+  //   {
+  //     url: "../../images/p2.jpg",
+  //   },
+  //   {
+  //     url: "../../images/p1.jpg",
+  //   },
+  // ];
   const addToCartHandler = () => {
     const existItem = cart.cartItems.find((x) => x._id === product!._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -77,6 +86,20 @@ const ProductPage = () => {
               src={product.image}
               alt={product.name}
             ></img>
+            {/* <div>
+              <img src={images[currentImage].url} className="main-image" />
+
+              <div className="thumbnails">
+                {images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image.url}
+                    className={index === currentImage ? "active" : ""}
+                    onClick={() => setCurrentImage(index)}
+                  />
+                ))}
+              </div>
+            </div> */}
           </Col>
           <Col className="col-md-6 col-xl-7">
             <ListGroup variant="flush">
@@ -104,7 +127,7 @@ const ProductPage = () => {
             </ListGroup>
             <div className="mt-4 d-flex align-items-center">
               <Button
-                className="button-quantity"
+                className="button-quantity button-left "
                 onClick={() => hanleChangeCount("decrease")}
                 disabled={quantity === 0}
               >
@@ -118,22 +141,54 @@ const ProductPage = () => {
                 onChange={onchange}
               />
               <Button
-                className="button-quantity"
+                className="button-quantity button-right"
                 onClick={() => hanleChangeCount("increase")}
                 disabled={quantity === product.countInStock}
               >
                 +
               </Button>
             </div>
-            {product.countInStock > 0 && (
+            <div className="mt-2 d-flex align-items-center mb-4">
+              {product.countInStock > 0 && (
+                <Button
+                  className="button-add add-M mt-2"
+                  onClick={() => addToCartHandler()}
+                >
+                  <i className="fas fa-folder-open"></i>
+                  <span style={{ marginLeft: "8px" }}>Add to cart</span>
+                </Button>
+              )}
               <Button
-                className="button-add add-M mt-2"
-                onClick={() => addToCartHandler()}
+                className="button-quantity"
+                style={{
+                  height: "40px",
+                  marginTop: "8px",
+                  borderRadius: "8px",
+                  marginLeft: "8px",
+                  backgroundColor: "#f0f3f2",
+                }}
               >
-                <i className="fas fa-folder-open"></i>
-                <span style={{ marginLeft: "8px" }}>Add to cart</span>
+                <img src="../../svg/heart.svg" alt="heart" />
               </Button>
-            )}
+            </div>
+            <div className="line"></div>
+            <div className="mt-4">
+              <div
+                style={{
+                  borderBottom: "1px solid #21313c",
+                  padding: "0 4px 2px 0",
+                  width: "fit-content",
+                }}
+              >
+                Country Of Origin: <span>India</span>
+              </div>
+              <p className="pt-2">
+                Amul Taaza Toned Milk (Polypack) is pasteurized with a great
+                nutritional value. It can be consumed directly or can be used
+                for preparing tea, coffee, sweets, khoya, curd, buttermilk, ghee
+                etc.
+              </p>
+            </div>
           </Col>
           <Card>
             <Card.Body>
