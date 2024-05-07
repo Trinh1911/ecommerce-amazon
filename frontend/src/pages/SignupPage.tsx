@@ -7,8 +7,11 @@ import { Store } from "../Store";
 import { ApiError } from "../types/ApiError";
 import { getError } from "../utils";
 import { useSignupMutation } from "../Hooks/userHooks";
+import { hideFooter, hideHeader } from "../App";
 
 export default function SignupPage() {
+  hideFooter();
+  hideHeader();
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
@@ -26,6 +29,8 @@ export default function SignupPage() {
     if (userInfo) {
       navigate(redirect);
     }
+    hideFooter();
+    hideHeader();
   }, [navigate, redirect, userInfo]);
 
   const { mutateAsync: signup, isLoading } = useSignupMutation();
@@ -149,7 +154,10 @@ export default function SignupPage() {
             <title>Sign Up</title>
           </Helmet>
           <div className="justify-content-center row">
-            <div className="col-xxl-4 col-xl-5 col-lg-6 col-md-8">
+            <div
+              className="col-xxl-4 col-xl-5 col-lg-6 col-md-8"
+              style={{ position: "absolute", top: "11%" }}
+            >
               <div className="card">
                 <div
                   className="pt-4 pb-4 text-center card-header"

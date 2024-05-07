@@ -16,7 +16,6 @@ const HomePage = () => {
   const SnackProduct = products?.filter((product) => {
     return product.brand === "Snack";
   });
-  // hideFooter();
   return isLoading ? (
     <LoadingBox />
   ) : error ? (

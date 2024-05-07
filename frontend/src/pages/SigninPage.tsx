@@ -8,10 +8,13 @@ import { Store } from "../Store";
 import { ApiError } from "../types/ApiError";
 import { getError } from "../utils";
 import { useSigninMutation } from "../Hooks/userHooks";
+import { hideFooter, hideHeader } from "../App";
 
 export default function SigninPage() {
   const navigate = useNavigate();
   const { search } = useLocation();
+  hideFooter()
+  hideHeader()
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
 
@@ -96,7 +99,7 @@ export default function SigninPage() {
             <title>Sign In</title>
           </Helmet>
           <div className="justify-content-center row">
-            <div className="col-xxl-4 col-xl-5 col-lg-6 col-md-8">
+            <div className="col-xxl-4 col-xl-5 col-lg-6 col-md-8" style={{position: "absolute", top: "20%"}}>
               <div className="card">
                 <div
                   className="pt-4 pb-4 text-center card-header"
@@ -136,7 +139,11 @@ export default function SigninPage() {
                     <Button
                       disabled={isLoading}
                       type="submit"
-                      style={{ background: "rgba(114, 124, 245, 1)",boxShadow: "0px 2px 6px 0px rgba(114, 124, 245, 0.5)", border: "none"}}
+                      style={{
+                        background: "rgba(114, 124, 245, 1)",
+                        boxShadow: "0px 2px 6px 0px rgba(114, 124, 245, 0.5)",
+                        border: "none",
+                      }}
                     >
                       Log in
                     </Button>
