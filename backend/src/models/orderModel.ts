@@ -44,37 +44,37 @@ class PaymentResult {
 
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class Order {
-  public _id!: string
-  @prop()
-  public orderItems!: Item[]
-  @prop()
-  public shippingAddress?: ShippingAddress
+    public _id!: string
+    @prop()
+    public orderItems!: Item[]
+    @prop()
+    public shippingAddress?: ShippingAddress
 
-  @prop({ ref: User })
-  public user?: Ref<User>
+    @prop({ ref: User })
+    public user?: Ref<User>
 
-  @prop({ required: true })
-  public paymentMethod!: string
+    @prop({ required: true })
+    public paymentMethod!: string
 
-  @prop()
-  public paymentResult?: PaymentResult
+    @prop()
+    public paymentResult?: PaymentResult
 
-  @prop({ required: true, default: 0 })
-  public itemsPrice!: number
-  @prop({ required: true, default: 0 })
-  public shippingPrice!: number
-  @prop({ required: true, default: 0 })
-  public taxPrice!: number
-  @prop({ required: true, default: 0 })
-  public totalPrice!: number
-  @prop({ required: true, default: false })
-  public isPaid!: boolean
-  @prop()
-  public paidAt!: Date
-  @prop({ required: true, default: false })
-  public isDelivered!: boolean
-  @prop()
-  public deliveredAt!: Date
+    @prop({ required: true, default: 0 })
+    public itemsPrice!: number
+    @prop({ required: true, default: 0 })
+    public shippingPrice!: number
+    @prop({ required: true, default: 0 })
+    public taxPrice!: number
+    @prop({ required: true, default: 0 })
+    public totalPrice!: number
+    @prop({ required: true, default: false })
+    public isPaid!: boolean
+    @prop()
+    public paidAt!: Date
+    @prop({ required: true, default: false })
+    public isDelivered!: boolean
+    @prop()
+    public deliveredAt!: Date
 }
 
 export const OrderModel = getModelForClass(Order)

@@ -42,7 +42,7 @@ export const usePayOrderMutation = () =>
         )
       ).data,
   })
-  export const useGetOrderHistoryQuery = () =>
+export const useGetOrderHistoryQuery = () =>
   useQuery({
     queryKey: ['order-history'],
     queryFn: async () =>

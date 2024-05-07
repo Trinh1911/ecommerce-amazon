@@ -13,8 +13,9 @@ import { Store } from "../Store";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
 
 const ProductPage = () => {
-  const [quantity, setQuantity] = useState(0);
+  const [addquantity, setQuantity] = useState(0);
   const params = useParams();
+  const [active, setActive] = useState(1);
   const [currentImage, setCurrentImage] = useState(0);
   const { slug } = params;
   const {
@@ -45,9 +46,10 @@ const ProductPage = () => {
   //     url: "../../images/p1.jpg",
   //   },
   // ];
-  const addToCartHandler = () => {
+  const addToCartHandler = (addquantity: number) => {
     const existItem = cart.cartItems.find((x) => x._id === product!._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const quantity = existItem ? existItem.quantity + addquantity : addquantity;
+    console.log("quantity", quantity);
     if (product!.countInStock < quantity) {
       toast.warn("Sorry. Product is out of stock");
       return;
@@ -61,10 +63,10 @@ const ProductPage = () => {
   };
   const hanleChangeCount = (type: string) => {
     if (type === "increase") {
-      setQuantity(quantity + 1);
-      console.log("quantity: ", quantity);
+      setQuantity(addquantity + 1);
+      console.log("quantity: ", addquantity);
     } else {
-      setQuantity(quantity - 1);
+      setQuantity(addquantity - 1);
     }
   };
   return isLoading ? (
@@ -129,21 +131,21 @@ const ProductPage = () => {
               <Button
                 className="button-quantity button-left "
                 onClick={() => hanleChangeCount("decrease")}
-                disabled={quantity === 0}
+                disabled={addquantity === 0}
               >
                 -
               </Button>
               <input
                 className="input-quantity"
                 min={1}
-                value={quantity}
+                value={addquantity}
                 max={product.countInStock}
                 onChange={onchange}
               />
               <Button
                 className="button-quantity button-right"
                 onClick={() => hanleChangeCount("increase")}
-                disabled={quantity === product.countInStock}
+                disabled={addquantity === product.countInStock}
               >
                 +
               </Button>
@@ -152,7 +154,7 @@ const ProductPage = () => {
               {product.countInStock > 0 && (
                 <Button
                   className="button-add add-M mt-2"
-                  onClick={() => addToCartHandler()}
+                  onClick={() => addToCartHandler(addquantity)}
                 >
                   <i className="fas fa-folder-open"></i>
                   <span style={{ marginLeft: "8px" }}>Add to cart</span>
@@ -189,6 +191,36 @@ const ProductPage = () => {
                 etc.
               </p>
             </div>
+            <div>
+              <div onClick={() => setActive(1)}>Thông tin nổi bật</div>
+              <div onClick={() => setActive(2)}>Thông số kỹ thuật</div>
+            </div>
+            {active === 1 ? (
+              <div>
+                <div>{product.description}</div>
+              </div>
+            ) : (
+              <div>
+                <tbody>
+                  <tr style={{ backgroundColor: "rgba(254, 234, 223, 0.7)" }}>
+                    <div>Dimensions</div>
+                    <div>{product.category}</div>
+                  </tr>
+                  <tr>
+                    <div>Networking Interface</div>
+                    <div>{product.rating}</div>
+                  </tr>
+                  <tr style={{ backgroundColor: "rgba(254, 234, 223, 0.7)" }}>
+                    <div>Wireless Security</div>
+                    <div>{product.numReviews}</div>
+                  </tr>
+                  <tr>
+                    <div>Power Supply</div>
+                    <div>{product.countInStock}</div>
+                  </tr>
+                </tbody>
+              </div>
+            )}
           </Col>
           <Card>
             <Card.Body>
@@ -214,7 +246,7 @@ const ProductPage = () => {
                 {product.countInStock > 0 && (
                   <Button
                     className="button-add add-M mt-2"
-                    onClick={() => addToCartHandler()}
+                    onClick={() => addToCartHandler(addquantity)}
                   >
                     <i className="fas fa-plus"></i>
                     <span>Add to cart</span>

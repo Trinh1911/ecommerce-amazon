@@ -62,6 +62,7 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, mode: state.mode === "dark" ? "light" : "dark" };
     case "CART_ADD_ITEM":
       const newItem = action.payload;
+      console.log('action.payload', newItem)
       const existItem = state.cart.cartItems.find(
         (item: CartItem) => item._id === newItem._id
       );

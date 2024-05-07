@@ -109,7 +109,7 @@ function App() {
                 <Link to="/cart" className="nav-link header-link p-0">
                   {
                     <span className="cart-badge">
-                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                      {cart.cartItems.length}
                     </span>
                   }
                   <svg
