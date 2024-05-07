@@ -124,7 +124,22 @@ const ProductPage = () => {
                   styleRating={{ visibility: "hidden" }}
                 ></Rating>
               </div>
-              <div className="product-detail--price">${product.price}</div>
+              <div
+                style={{
+                  width: "100px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div className="product-detail--price">${product.price}</div>
+                <div style={{ marginTop: "5px" }}>
+                  {product.countInStock > 0 ? (
+                    <Badge bg="success">In Stock</Badge>
+                  ) : (
+                    <Badge bg="danger">Unavailable</Badge>
+                  )}
+                </div>
+              </div>
               <div className="line"></div>
             </ListGroup>
             <div className="mt-4 d-flex align-items-center">
@@ -191,70 +206,44 @@ const ProductPage = () => {
                 etc.
               </p>
             </div>
-            <div>
-              <div onClick={() => setActive(1)}>Thông tin nổi bật</div>
-              <div onClick={() => setActive(2)}>Thông số kỹ thuật</div>
-            </div>
-            {active === 1 ? (
-              <div>
-                <div>{product.description}</div>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="col-12">
+            <div className="d-flex justify-content-evenly align-items-center pb-0">
+              <div className="title-description" onClick={() => setActive(1)}>
+                Description
               </div>
-            ) : (
-              <div>
+              <div className="title-description" onClick={() => setActive(2)}>
+                Feedback
+              </div>
+            </div>
+            <div className="line"></div>
+            {active === 1 ? (
+              <table className="table-description">
                 <tbody>
-                  <tr style={{ backgroundColor: "rgba(254, 234, 223, 0.7)" }}>
-                    <div>Dimensions</div>
-                    <div>{product.category}</div>
+                  <tr style={{ backgroundColor: "#f0f3f2" }}>
+                    <th>Key Features</th>
+                    <td>{product.category}</td>
                   </tr>
                   <tr>
-                    <div>Networking Interface</div>
-                    <div>{product.rating}</div>
+                    <th>Country Of Origin</th>
+                    <td>{product.rating}</td>
                   </tr>
-                  <tr style={{ backgroundColor: "rgba(254, 234, 223, 0.7)" }}>
-                    <div>Wireless Security</div>
-                    <div>{product.numReviews}</div>
+                  <tr style={{ backgroundColor: "#f0f3f2" }}>
+                    <th>Return Policy</th>
+                    <td>{product.numReviews}</td>
                   </tr>
                   <tr>
-                    <div>Power Supply</div>
-                    <div>{product.countInStock}</div>
+                    <th>Disclaimer</th>
+                    <td>{product.countInStock}</td>
                   </tr>
                 </tbody>
-              </div>
+              </table>
+            ) : (
+              <div>feedback</div>
             )}
           </Col>
-          <Card>
-            <Card.Body>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Price:</Col>
-                    <Col>${product.price}</Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Status:</Col>
-                    <Col>
-                      {product.countInStock > 0 ? (
-                        <Badge bg="success">In Stock</Badge>
-                      ) : (
-                        <Badge bg="danger">Unavailable</Badge>
-                      )}
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                {product.countInStock > 0 && (
-                  <Button
-                    className="button-add add-M mt-2"
-                    onClick={() => addToCartHandler(addquantity)}
-                  >
-                    <i className="fas fa-plus"></i>
-                    <span>Add to cart</span>
-                  </Button>
-                )}
-              </ListGroup>
-            </Card.Body>
-          </Card>
         </Row>
       </div>
     </>

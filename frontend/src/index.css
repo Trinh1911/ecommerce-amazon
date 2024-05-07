@@ -44,16 +44,19 @@
 .col-width {
   width: fit-content !important;
 }
+
 .button-left {
   border-right: none;
   border-bottom-left-radius: 4px !important;
   border-top-left-radius: 4px !important;
 }
+
 .button-right {
   border-left: none;
   border-bottom-right-radius: 4px !important;
   border-top-right-radius: 4px !important;
 }
+
 .rating-icon i {
   font-size: 14px;
   color: #ffc000;
@@ -315,7 +318,7 @@ a.header-link:hover,
   color: #001e2b;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: #ecf0ef;
   border-color: #ecf0ef;
   color: #001e2b;
@@ -495,4 +498,48 @@ a.header-link:hover,
   border-color: #ecf0ef;
   background-color: transparent;
   text-align: center;
+}
+
+.title-description {
+  width: 292px;
+  height: 56px;
+  line-height: 56px;
+  margin-right: 19px;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+
+  &:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #0aad0a;
+    transition: width .3s;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  &:hover {
+    color: #0aad0a;
+    cursor: pointer;
+  }
+}
+
+.table-description {
+  width: 98%;
+  height: 195px;
+  margin: 20px auto;
+  margin-bottom: 40px;
+  padding: 10px;
+  font-size: 16px;
+  white-space: pre-line;
+  text-align: justify;
+  border: 1px solid #eae7e7;
+  border-top: none;
+  th {
+    padding-left: 30px;
+  }
 }
