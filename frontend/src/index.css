@@ -97,7 +97,10 @@ img.thumbnail {
 }
 
 /* header */
+.nav-link:focus, .nav-link:hover {
+  color: #21313c;
 
+}
 .navbar-brand {
   font-weight: bold;
   font-size: 1.8rem;
@@ -113,7 +116,6 @@ a.header-link:hover,
 .header-link>a:hover,
 .header-link>a:focus {
   cursor: pointer;
-  color: #21313c;
 }
 
 .navbar-nav .nav-link.show {

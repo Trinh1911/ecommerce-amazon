@@ -132,7 +132,7 @@ const ProductPage = () => {
                 }}
               >
                 <div className="product-detail--price">${product.price}</div>
-                <div style={{ marginTop: "5px" }}>
+                <div style={{ marginTop: "5px", marginLeft: "10px" }}>
                   {product.countInStock > 0 ? (
                     <Badge bg="success">In Stock</Badge>
                   ) : (

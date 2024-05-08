@@ -129,6 +129,10 @@ function App() {
                       </svg>
                       <span>Cart</span>
                     </Link>
+                    <Link to="/whistlist" className="d-flex align-items-center nav-link header-link p-0" style={{marginLeft: "10px"}}>
+                      <i style={{color: "#198754"}} className="fas fa-heart "></i>
+                      <span style={{marginLeft: "5px"}}>Whistlist</span>
+                    </Link>
                   </Nav>
                 </Navbar.Collapse>
               </div>

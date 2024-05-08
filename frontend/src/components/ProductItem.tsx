@@ -45,6 +45,7 @@ const ProductItem = ({ product }: { product: Product }) => {
           <img
             src={product.image}
             alt={product.name}
+            style={{ width: "220px", height: "220px" }}
             className="card-img-top"
           />
         </Link>
@@ -57,7 +58,12 @@ const ProductItem = ({ product }: { product: Product }) => {
           </Link>
           <div className="tools-react">
             <i className="fas fa-eye "></i>
-            <i className="fas fa-heart "></i>
+            <i
+              className="fas fa-heart "
+              onClick={() =>
+                addToWhistList(convertProductToCartItem(product))
+              }
+            ></i>
           </div>
           <Rating rating={product.rating} numReviews={product.numReviews} />
           <div className="d-flex justify-content-between align-items-center mt-3">
