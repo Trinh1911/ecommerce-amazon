@@ -137,8 +137,6 @@ const HomePage = () => {
                   borderColor: "#0aad0a",
                 }}
               >
-                <span>Shop Now</span>
-                <i className="fas fa-arrow-right "></i>
               </ButtonComponent>
             </div>
           </div>

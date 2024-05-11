@@ -21,6 +21,10 @@
   }
 }
 
+.btn:hover {
+  border-color: #b3bdba !important;
+}
+
 .gray-dark::before {
   background-color: #595a5c !important;
 }
@@ -97,10 +101,12 @@ img.thumbnail {
 }
 
 /* header */
-.nav-link:focus, .nav-link:hover {
+.nav-link:focus,
+.nav-link:hover {
   color: #21313c;
 
 }
+
 .navbar-brand {
   font-weight: bold;
   font-size: 1.8rem;
@@ -541,6 +547,7 @@ a.header-link:hover,
   text-align: justify;
   border: 1px solid #eae7e7;
   border-top: none;
+
   th {
     padding-left: 30px;
   }

@@ -21,6 +21,7 @@ import CartPage from "./pages/CartPage.tsx";
 import WhistListPage from "./pages/WhistListPage.tsx";
 import SigninPage from "./pages/SigninPage.tsx";
 import SignupPage from "./pages/SignupPage.tsx";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 import ShippingAddressPage from "./pages/ShippingAddressPage.tsx";
 import PaymentMethodPage from "./pages/PaymentMethodPage.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
@@ -57,7 +58,9 @@ const router = createBrowserRouter(
         <Route path="/adminUser" element={<AdminUser />} />
         <Route path="/adminProduct" element={<AdminProduct />} />
         <Route path="/adminOrder" element={<AdminOrder />} />
+
       </Route>
+        <Route path="*" element={<NotFoundPage />} />
 
       {/* <Route path="dashboard" element={<Dashboard />} /> */}
       {/* ... etc. */}
