@@ -7,7 +7,7 @@ import { convertProductToCartItem, getError } from "../utils";
 import { ApiError } from "../types/ApiError";
 import { Badge, Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import Rating from "../components/Rating";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { Store } from "../Store";
 import BreadcrumbComponent from "../components/BreadcrumbComponent";
@@ -16,7 +16,13 @@ const ProductPage = () => {
   const [addquantity, setQuantity] = useState(0);
   const params = useParams();
   const [active, setActive] = useState(1);
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentImage, setCurrentImage] = useState<string | null>(null);
+  const [images, setImages] = useState<string[]>([
+    "",
+    "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=480,h=480/app/assets/products/large_images/jpeg/1de15688-2340-4435-92dc-ef5c9d1bdf8a.jpg?ts=1707312314",
+    "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=480,h=480/app/images/products/sliding_image/159b.jpg?ts=1654778815",
+    "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=480,h=480/app/assets/products/large_images/jpeg/1de15688-2340-4435-92dc-ef5c9d1bdf8a.jpg?ts=1707312314",
+  ]);
   const { slug } = params;
   const {
     data: product,
@@ -38,14 +44,6 @@ const ProductPage = () => {
 
     setQuantity(parseFloat(value));
   };
-  // const images = [
-  //   {
-  //     url: "../../images/p2.jpg",
-  //   },
-  //   {
-  //     url: "../../images/p1.jpg",
-  //   },
-  // ];
   const addToCartHandler = (addquantity: number) => {
     const existItem = cart.cartItems.find((x) => x._id === product!._id);
     const quantity = existItem ? existItem.quantity + addquantity : addquantity;
@@ -69,6 +67,16 @@ const ProductPage = () => {
       setQuantity(addquantity - 1);
     }
   };
+  useEffect(() => {
+    if (product!.image) {
+      setCurrentImage(product!.image);
+      setImages((prevImages) => {
+        const updatedImages = [...prevImages];
+        updatedImages[0] = product!.image;
+        return updatedImages;
+      });
+    }
+  }, [product]);
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
@@ -82,28 +90,38 @@ const ProductPage = () => {
       <BreadcrumbComponent brand={product.brand} name={product.name} />
       <div>
         <Row>
-          <Col className="col-md-6 col-xl-5">
-            <img
-              className="img-detail"
-              src={product.image}
-              alt={product.name}
-            ></img>
-            {/* <div>
-              <img src={images[currentImage].url} className="main-image" />
-
-              <div className="thumbnails">
+          <Col className="col-md-5 col-xl-6">
+            {currentImage && (
+              <img
+                className="rounded-lg object-fit"
+                src={currentImage}
+                width="480px"
+              />
+            )}
+            {images[0] !== "" && (
+              <div className="row d-flex items-center justify-center mt-2 px-3">
                 {images.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image.url}
-                    className={index === currentImage ? "active" : ""}
-                    onClick={() => setCurrentImage(index)}
-                  />
+                  <div className="col-md-3" key={index}>
+                    <img
+                      // onMouseOver={() => setCurrentImage(image)}
+                      onClick={() => setCurrentImage(image)}
+                      width="130px"
+                      style={{
+                        border:
+                          currentImage === image
+                            ? "1px solid rgb(12, 131, 31)"
+                            : "none",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                      }}
+                      src={image}
+                    />
+                  </div>
                 ))}
               </div>
-            </div> */}
+            )}
           </Col>
-          <Col className="col-md-6 col-xl-7">
+          <Col className="col-md-7 col-xl-6">
             <ListGroup variant="flush">
               <div className="product-detail--brand">{product.brand}</div>
               <div>
