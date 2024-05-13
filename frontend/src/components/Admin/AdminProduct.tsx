@@ -13,6 +13,7 @@ import { ApiError } from "../../types/ApiError";
 import { Store } from "../../Store";
 import Modal from "react-bootstrap/Modal";
 import {
+  apiUploadImages,
   useCreateProductMutation,
   useDeletedProduct,
   useGetProductsQuery,
@@ -33,7 +34,7 @@ const AdminProduct = () => {
   const [countInStock, setCountInStock] = useState(0);
   const [rating, setRating] = useState(0);
   const [numReviews, setNumReviews] = useState(0);
-  const [image, setImage] = useState<File | any>(null);
+  const [image, setImage] = useState<File | any>([]);
   const [id, setIdUser] = useState("");
   const [idDeleted, setIdDeleted] = useState("");
   const handleClose = () => setShow(false);
@@ -137,6 +138,26 @@ const AdminProduct = () => {
   useEffect(() => {
     renderTable();
   }, [products]);
+
+  const handleSetImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    let images: string[] | null = [];
+    let files = e.target.files;
+
+    let formData = new FormData();
+    for (let i of files!) {
+      formData.append("file", i);
+      formData.append("upload_preset", "qmyzrsho");
+
+      let response = await apiUploadImages(formData);
+      console.log(response);
+      if (response.status === 200)
+        images = [...images, response.data?.secure_url];
+    }
+
+    setImage((prev: string[]) => [...prev, ...images]);
+    console.log(image);
+  };
   const renderTable = () => {
     return (
       <table
@@ -324,7 +345,7 @@ const AdminProduct = () => {
                   />
                 </Form.Group>
                 <input type="file" onChange={handleOnchangeAvatar}></input>
-                <img
+                {/* <img
                   src={image ? image : ""}
                   style={{
                     height: "60px",
@@ -334,7 +355,19 @@ const AdminProduct = () => {
                     marginLeft: "10px",
                   }}
                   alt="avatar"
-                />
+                /> */}
+
+                {/* theem nhieu snh */}
+                <div>
+                  <label htmlFor="images">Them anh</label>
+                  <input
+                    onChange={handleSetImages}
+                    id="images"
+                    type="file"
+                    name="images"
+                    multiple
+                  />
+                </div>
                 <div className="mb-3 text-center mt-3">
                   <Button
                     disabled={isLoading}

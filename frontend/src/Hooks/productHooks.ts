@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import apiClient from '../apiClient'
 import { Product } from '../types/Product'
+import axios from 'axios'
 
 export const useGetProductsQuery = () =>
   useQuery({
@@ -106,3 +107,9 @@ export const useUpdateProductMutation = (id: string) =>
         })
       ).data,
   })
+
+export const apiUploadImages = (images: any) => axios({
+  url: `https://api.cloudinary.com/v1_1/dzliukjii/image/upload`,
+  method: 'post',
+  data: images
+})

@@ -17,12 +17,6 @@ const ProductPage = () => {
   const params = useParams();
   const [active, setActive] = useState(1);
   const [currentImage, setCurrentImage] = useState<string | null>(null);
-  const [images, setImages] = useState<string[]>([
-    "",
-    "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=480,h=480/app/assets/products/large_images/jpeg/1de15688-2340-4435-92dc-ef5c9d1bdf8a.jpg?ts=1707312314",
-    "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=480,h=480/app/images/products/sliding_image/159b.jpg?ts=1654778815",
-    "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=480,h=480/app/assets/products/large_images/jpeg/1de15688-2340-4435-92dc-ef5c9d1bdf8a.jpg?ts=1707312314",
-  ]);
   const { slug } = params;
   const {
     data: product,
@@ -68,13 +62,9 @@ const ProductPage = () => {
     }
   };
   useEffect(() => {
-    if (product!.image) {
-      setCurrentImage(product!.image);
-      setImages((prevImages) => {
-        const updatedImages = [...prevImages];
-        updatedImages[0] = product!.image;
-        return updatedImages;
-      });
+    // Đặt ảnh đầu tiên làm ảnh hiện tại khi sản phẩm được tải
+    if (product && product.image.length > 0) {
+      setCurrentImage(product.image[0]); // Giả sử mỗi item trong image có thuộc tính img
     }
   }, [product]);
   return isLoading ? (
@@ -90,37 +80,33 @@ const ProductPage = () => {
       <BreadcrumbComponent brand={product.brand} name={product.name} />
       <div>
         <Row>
-          <Col className="col-md-5 col-xl-6">
-            {currentImage && (
-              <img
-                className="rounded-lg object-fit"
-                src={currentImage}
-                width="480px"
-              />
-            )}
-            {images[0] !== "" && (
-              <div className="row d-flex items-center justify-center mt-2 px-3">
-                {images.map((image, index) => (
-                  <div className="col-md-3" key={index}>
-                    <img
-                      // onMouseOver={() => setCurrentImage(image)}
-                      onClick={() => setCurrentImage(image)}
-                      width="130px"
-                      style={{
-                        border:
-                          currentImage === image
-                            ? "1px solid rgb(12, 131, 31)"
-                            : "none",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                      }}
-                      src={image}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </Col>
+        <Col className="col-md-5 col-xl-6">
+      {currentImage && (
+        <img
+          className="rounded-lg object-fit"
+          src={currentImage}
+          width="480px"
+          alt="Product"
+        />
+      )}
+      <div className="row d-flex items-center justify-center mt-2 px-3">
+        {product?.image.map((item, index) => (
+          <div className="col-md-3" key={index}>
+            <img
+              onClick={() => setCurrentImage(item)}
+              width="130px"
+              style={{
+                border: currentImage === item ? "1px solid rgb(12, 131, 31)" : "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+              src={item}
+              alt={`Thumbnail ${index}`}
+            />
+          </div>
+        ))}
+      </div>
+    </Col>
           <Col className="col-md-7 col-xl-6">
             <ListGroup variant="flush">
               <div className="product-detail--brand">{product.brand}</div>

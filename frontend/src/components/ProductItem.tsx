@@ -43,7 +43,7 @@ const ProductItem = ({ product }: { product: Product }) => {
       <Card className="card-product">
         <Link to={`/product/${product.slug}`}>
           <img
-            src={product.image}
+            src={product.image[0]}
             alt={product.name}
             style={{ height: "220px" }}
             className="card-img-top"

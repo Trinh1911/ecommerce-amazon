@@ -11,7 +11,7 @@ export class Product {
     public slug!: string
 
     @prop({ required: true })
-    public image!: string
+    public image!: Array<any>
 
     @prop({ required: true })
     public brand!: string
