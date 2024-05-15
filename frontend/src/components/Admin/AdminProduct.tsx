@@ -53,31 +53,6 @@ const AdminProduct = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-  // change avatar
-  const handleOnchangeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files ? event.target.files[0] : null;
-    console.log("file", file);
-    validateFile(file);
-  };
-  console.log("image", image);
-  const validateFile = (file: File | null) => {
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        <Toast>
-          <Toast.Body>Please select an image file.</Toast.Body>
-        </Toast>;
-      } else if (file.size > 1000000) {
-        <Toast>
-          <Toast.Body>File size is too large.</Toast.Body>
-        </Toast>;
-      } else {
-        setImage(`../images/product/${file.name}`);
-        <Toast>
-          <Toast.Body>again.</Toast.Body>
-        </Toast>;
-      }
-    }
-  };
   // update user
   const { mutateAsync: updateProduct } = useUpdateProductMutation(id);
   // get product
@@ -247,18 +222,17 @@ const AdminProduct = () => {
                     onChange={(e) => setNumReviews(Number(e.target.value))}
                   />
                 </Form.Group>
-                <input type="file" onChange={handleOnchangeAvatar}></input>
-                <img
-                  src={image ? image : ""}
-                  style={{
-                    height: "60px",
-                    width: "60px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    marginLeft: "10px",
-                  }}
-                  alt="avatar"
-                />
+                {/* theem nhieu snh */}
+                <div>
+                  <label htmlFor="images">Them anh</label>
+                  <input
+                    onChange={handleSetImages}
+                    id="images"
+                    type="file"
+                    name="images"
+                    multiple
+                  />
+                </div>
                 <div className="mb-3 text-center mt-3">
                   <Button
                     disabled={isLoading}
@@ -344,20 +318,8 @@ const AdminProduct = () => {
                     onChange={(e) => setNumReviews(Number(e.target.value))}
                   />
                 </Form.Group>
-                <input type="file" onChange={handleOnchangeAvatar}></input>
-                {/* <img
-                  src={image ? image : ""}
-                  style={{
-                    height: "60px",
-                    width: "60px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    marginLeft: "10px",
-                  }}
-                  alt="avatar"
-                /> */}
 
-                {/* theem nhieu snh */}
+                {/* them nhieu anh */}
                 <div>
                   <label htmlFor="images">Them anh</label>
                   <input
