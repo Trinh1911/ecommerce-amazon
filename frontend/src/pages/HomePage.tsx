@@ -14,9 +14,9 @@ import ButtonComponent from "../components/ButtonComponent";
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
   const SnackProduct = products?.filter((product) => {
-    return product.brand === "Snack";
+    return product.category === "Snack";
   });
-  console.log('products', products)
+  console.log("products", products);
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
@@ -137,8 +137,7 @@ const HomePage = () => {
                   backgroundColor: "#0aad0a",
                   borderColor: "#0aad0a",
                 }}
-              >
-              </ButtonComponent>
+              ></ButtonComponent>
             </div>
           </div>
           {SnackProduct!.map((product) => (
