@@ -14,7 +14,7 @@ export class Product {
     public image!: Array<any>
 
     @prop({ required: true })
-    public brand!: string
+    public CountryOrigin!: string
 
     @prop({ required: true })
     public category!: string

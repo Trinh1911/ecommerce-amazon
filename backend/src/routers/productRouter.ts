@@ -41,7 +41,7 @@ productRouter.post(
       name,
       slug,
       image,
-      brand,
+      CountryOrigin,
       category,
       description,
       price,
@@ -53,7 +53,7 @@ productRouter.post(
       name,
       slug,
       image,
-      brand,
+      CountryOrigin,
       category,
       description,
       price,
@@ -96,7 +96,7 @@ productRouter.put(
       product.name = req.body.name || product.name
       product.slug = req.body.slug || product.slug
       product.image = req.body.image || product.image
-      product.brand = req.body.brand || product.brand
+      product.CountryOrigin = req.body.CountryOrigin || product.CountryOrigin
       product.category = req.body.category || product.category
       product.description = req.body.description || product.description
       product.price = req.body.price || product.price
@@ -108,7 +108,7 @@ productRouter.put(
         name: updatedproduct.name,
         slug: updatedproduct.slug,
         image: updatedproduct.image,
-        brand: updatedproduct.brand,
+        CountryOrigin: updatedproduct.CountryOrigin,
         category: updatedproduct.category,
         description: updatedproduct.description,
         price: updatedproduct.price,

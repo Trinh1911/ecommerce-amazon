@@ -27,7 +27,7 @@ const AdminProduct = () => {
   const [showModalCreate, setShowModalCreate] = useState(false);
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
-  const [brand, setBrand] = useState("");
+  const [CountryOrigin, setCountryOrigin] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -68,7 +68,7 @@ const AdminProduct = () => {
         name,
         slug,
         image,
-        brand,
+        CountryOrigin,
         category,
         description,
         price,
@@ -88,7 +88,7 @@ const AdminProduct = () => {
         name,
         slug,
         image,
-        brand,
+        CountryOrigin,
         category,
         description,
         price,
@@ -143,7 +143,7 @@ const AdminProduct = () => {
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Category</th>
-            <th scope="col">Brand</th>
+            <th scope="col">CountryOrigin</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -153,7 +153,7 @@ const AdminProduct = () => {
             <tr>
               <td>{product.name}</td>
               <td>{product.category}</td>
-              <td>{product.brand}</td>
+              <td>{product.CountryOrigin}</td>
               <td style={{ display: "flex" }}>
                 <div
                   style={{ marginRight: "16px" }}
@@ -184,9 +184,9 @@ const AdminProduct = () => {
                     onChange={(e) => setSlug(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="brand">
-                  <Form.Label>Brand</Form.Label>
-                  <Form.Control onChange={(e) => setBrand(e.target.value)} />
+                <Form.Group className="mb-3" controlId="CountryOrigin">
+                  <Form.Label>CountryOrigin</Form.Label>
+                  <Form.Control onChange={(e) => setCountryOrigin(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="category">
                   <Form.Label>Category</Form.Label>
@@ -280,9 +280,9 @@ const AdminProduct = () => {
                     onChange={(e) => setSlug(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="brand">
-                  <Form.Label>Brand</Form.Label>
-                  <Form.Control onChange={(e) => setBrand(e.target.value)} />
+                <Form.Group className="mb-3" controlId="CountryOrigin">
+                  <Form.Label>CountryOrigin</Form.Label>
+                  <Form.Control onChange={(e) => setCountryOrigin(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="category">
                   <Form.Label>Category</Form.Label>

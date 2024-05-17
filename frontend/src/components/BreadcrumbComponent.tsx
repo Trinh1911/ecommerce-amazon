@@ -1,19 +1,18 @@
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 interface Props {
-    brand: string;
-    name: string;
+  category: string;
+  name: string;
 }
-const BreadcrumbComponent = ({brand, name} : Props) => {
+const BreadcrumbComponent = ({ category, name }: Props) => {
   return (
     <Breadcrumb>
-      <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-      <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-        {brand}
+      <Breadcrumb.Item href="/#">Home</Breadcrumb.Item>
+      <Breadcrumb.Item>
+        {category}
       </Breadcrumb.Item>
       <Breadcrumb.Item active>{name}</Breadcrumb.Item>
     </Breadcrumb>
+  );
+};
 
-  )
-}
-
-export default BreadcrumbComponent
+export default BreadcrumbComponent;

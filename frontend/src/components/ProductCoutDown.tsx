@@ -73,78 +73,79 @@ const ProductCoutDown = ({ product }: { product: Product }) => {
   }, []);
   return (
     <>
-      {product.brand === "Snack" && (
-        <Card className="card-product" style={{ height: "470px" }}>
-          <Link to={`/product/${product.slug}`} style={{ textAlign: "center" }}>
-            <img
-              src={product.image}
-              alt={product.name}
-              style={{ width: "220px" }}
-              className="card-img-top"
-            />
-          </Link>
-          <Card.Body>
-            <Link
-              to={`/product/${product.slug}`}
-              style={{ textDecoration: "none" }}
+      <Card className="card-product" style={{ height: "470px" }}>
+        <Link to={`/product/${product.slug}`} style={{ textAlign: "center" }}>
+          <img
+            src={product.image[0]}
+            alt={product.name[0]}
+            style={{ width: "220px"}}
+            className="card-img-top"
+          />
+        </Link>
+        <Card.Body>
+          <Link
+            to={`/product/${product.slug}`}
+            style={{ textDecoration: "none" }}
+          >
+            <Card.Title
+              className="product-name"
+              style={{ fontSize: "17px", color: "#21313c", height: "46px"}}
             >
-              <Card.Title style={{ fontSize: "17px", color: "#21313c" }}>
-                {product.name}
-              </Card.Title>
-            </Link>
-            <div className="tools-react-L">
-              <i className="fas fa-eye "></i>
-              <i className="fas fa-heart "></i>
-            </div>
-            <div className="d-flex justify-content-between align-items-center mt-3">
-              <Card.Text className="m-0 price" style={{ fontSize: "14px" }}>
-                ${product.price}
-              </Card.Text>
-              <Rating rating={product.rating} numReviews={product.numReviews} />
-            </div>
-            {product.countInStock === 0 ? (
-              <Button variant="light" disabled>
-                Out of stock
-              </Button>
-            ) : (
-              <Button
-                className="button-add add-L mt-2"
-                onClick={() =>
-                  addToCartHandler(convertProductToCartItem(product))
-                }
-              >
-                <i className="fas fa-plus"></i>
-                <span style={{marginLeft: "4px"}}>Add to cart</span>
-              </Button>
-            )}
-            <div className="mt-3">
-              <div className="d-flex justify-content-between">
-                <div className="timer-segment">
-                  <span>{days}</span>
-                  <span>Days</span>
-                </div>
-                <div className="timer-segment">
-                  <span>{hours}</span>
-                  <span>Hours</span>
-                </div>
-                <div className="timer-segment">
-                  <span>{minutes}</span>
-                  <span>Minutes</span>
-                </div>
-                <div className="timer-segment">
-                  <span>{seconds}</span>
-                  <span>Seconds</span>
-                </div>
+              {product.name}
+            </Card.Title>
+          </Link>
+          <div className="tools-react-L">
+            <i className="fas fa-eye "></i>
+            <i className="fas fa-heart "></i>
+          </div>
+          <div className="d-flex justify-content-between align-items-center mt-3">
+            <Card.Text className="m-0 price" style={{ fontSize: "14px" }}>
+              ${product.price}
+            </Card.Text>
+            <Rating rating={product.rating} numReviews={product.numReviews} />
+          </div>
+          {product.countInStock === 0 ? (
+            <Button variant="light" disabled>
+              Out of stock
+            </Button>
+          ) : (
+            <Button
+              className="button-add add-L mt-2"
+              onClick={() =>
+                addToCartHandler(convertProductToCartItem(product))
+              }
+            >
+              <i className="fas fa-plus"></i>
+              <span style={{ marginLeft: "4px" }}>Add to cart</span>
+            </Button>
+          )}
+          <div className="mt-3">
+            <div className="d-flex justify-content-between">
+              <div className="timer-segment">
+                <span>{days}</span>
+                <span>Days</span>
+              </div>
+              <div className="timer-segment">
+                <span>{hours}</span>
+                <span>Hours</span>
+              </div>
+              <div className="timer-segment">
+                <span>{minutes}</span>
+                <span>Minutes</span>
+              </div>
+              <div className="timer-segment">
+                <span>{seconds}</span>
+                <span>Seconds</span>
               </div>
             </div>
-            {/* <Button
+          </div>
+          {/* <Button
             onClick={() => addToWhistList(convertProductToWhistList(product))}
           >
             Add to WhistList
           </Button> */}
-          </Card.Body>
-        </Card>
-      )}
+        </Card.Body>
+      </Card>
     </>
   );
 };

@@ -26,7 +26,7 @@ export const useCreateProductMutation = () =>
       name,
       slug,
       image,
-      brand,
+      CountryOrigin,
       category,
       description,
       price,
@@ -37,7 +37,7 @@ export const useCreateProductMutation = () =>
       name: string,
       slug: string,
       image: string,
-      brand: string,
+      CountryOrigin: string,
       category: string,
       description: string,
       price: number,
@@ -50,7 +50,7 @@ export const useCreateProductMutation = () =>
           name,
           slug,
           image,
-          brand,
+          CountryOrigin,
           category,
           description,
           price,
@@ -73,7 +73,7 @@ export const useUpdateProductMutation = (id: string) =>
       name,
       slug,
       image,
-      brand,
+      CountryOrigin,
       category,
       description,
       price,
@@ -84,7 +84,7 @@ export const useUpdateProductMutation = (id: string) =>
       name: string
       slug: string
       image: string
-      brand: string
+      CountryOrigin: string
       category: string
       description: string
       price: number
@@ -97,7 +97,7 @@ export const useUpdateProductMutation = (id: string) =>
           name,
           slug,
           image,
-          brand,
+          CountryOrigin,
           category,
           description,
           price,

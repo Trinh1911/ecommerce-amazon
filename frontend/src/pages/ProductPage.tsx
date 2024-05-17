@@ -77,7 +77,7 @@ const ProductPage = () => {
     <MessageBox variant="danger">Page Not Found</MessageBox>
   ) : (
     <>
-      <BreadcrumbComponent brand={product.brand} name={product.name} />
+      <BreadcrumbComponent category={product.category} name={product.name} />
       <div>
         <Row>
         <Col className="col-md-5 col-xl-6">
@@ -109,7 +109,7 @@ const ProductPage = () => {
     </Col>
           <Col className="col-md-7 col-xl-6">
             <ListGroup variant="flush">
-              <div className="product-detail--brand">{product.brand}</div>
+              <div className="product-detail--brand">{product.CountryOrigin}</div>
               <div>
                 <Helmet>
                   <title>{product.name}</title>

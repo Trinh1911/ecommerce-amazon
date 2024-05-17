@@ -4,7 +4,7 @@ export interface Product {
     slug: string;
     image: string;
     category: string;
-    brand: string;
+    CountryOrigin: string;
     price: number;
     countInStock: number;
     description: string;

@@ -16,7 +16,7 @@ const HomePage = () => {
   const SnackProduct = products?.filter((product) => {
     return product.category === "Snack";
   });
-  console.log("products", products);
+  console.log("SnackProduct", SnackProduct);
   return isLoading ? (
     <LoadingBox />
   ) : error ? (

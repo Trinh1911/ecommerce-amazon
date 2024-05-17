@@ -368,6 +368,16 @@ a.header-link:hover,
   }
 }
 
+.product-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.8rem;
+  line-height: 1.5;
+  height: 42px;
+  overflow: hidden;
+}
+
 .tools-react {
   position: absolute;
   top: 54%;

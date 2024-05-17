@@ -41,7 +41,7 @@ const ProductItem = ({ product }: { product: Product }) => {
   return (
     <>
       <Card className="card-product">
-        <Link to={`/product/${product.slug}`}>
+        <Link to={`/product/${product.slug}`} style={{ height: "220px" }}>
           <img
             src={product.image[0]}
             alt={product.name}
@@ -49,12 +49,12 @@ const ProductItem = ({ product }: { product: Product }) => {
             className="card-img-top"
           />
         </Link>
-        <Card.Body>
+        <Card.Body style={{width: "204px"}}>
           <Link
             to={`/product/${product.slug}`}
             style={{ textDecoration: "none" }}
           >
-            <Card.Title>{product.name}</Card.Title>
+            <Card.Title className="product-name">{product.name}</Card.Title>
           </Link>
           <div className="tools-react">
             <i className="fas fa-eye "></i>
