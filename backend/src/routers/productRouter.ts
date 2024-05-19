@@ -33,7 +33,7 @@ productRouter.get(
 productRouter.get(
   '/categories/:category',
   asyncHandler(async (req, res) => {
-    const product = await ProductModel.findOne({ category: req.params.category })
+    const product = await ProductModel.find({ category: req.params.category })
     if (product) {
       res.json(product)
     } else {

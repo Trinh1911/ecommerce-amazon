@@ -165,7 +165,7 @@ function App() {
                   {categories!.map((category) => (
                     <Dropdown.Item
                       className="dropdown-item"
-                      href={`/search?category=${category}`}
+                      href={`/${category}`}
                     >
                       {category}
                     </Dropdown.Item>

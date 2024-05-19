@@ -20,6 +20,12 @@ export const useGetCategoriesQuery = () =>
     queryFn: async () =>
       (await apiClient.get<[]>(`/api/products/categories`)).data,
   })
+  export const useGetProductByCategoryQuery = (category: string) =>
+    useQuery({
+      queryKey: ['products', category],
+      queryFn: async () =>
+        (await apiClient.get<Product>(`api/products/categories/${category}`)).data,
+    })
 export const useCreateProductMutation = () =>
   useMutation({
     mutationFn: async ({

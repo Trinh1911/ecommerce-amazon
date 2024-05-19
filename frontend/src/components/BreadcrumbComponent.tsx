@@ -1,7 +1,7 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 interface Props {
   category: string;
-  name: string;
+  name?: string;
 }
 const BreadcrumbComponent = ({ category, name }: Props) => {
   return (
@@ -10,7 +10,7 @@ const BreadcrumbComponent = ({ category, name }: Props) => {
       <Breadcrumb.Item>
         {category}
       </Breadcrumb.Item>
-      <Breadcrumb.Item active>{name}</Breadcrumb.Item>
+      {name && <Breadcrumb.Item active>{name}</Breadcrumb.Item>}
     </Breadcrumb>
   );
 };
