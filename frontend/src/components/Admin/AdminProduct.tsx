@@ -53,21 +53,22 @@ const AdminProduct = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-  // update user
-  const { mutateAsync: updateProduct } = useUpdateProductMutation(id);
+
   // get product
   const { data: products, isLoading } = useGetProductsQuery();
+  console.log("products", products);
   const { mutateAsync: productDeleted } = useDeletedProduct(idDeleted);
   // create product
   const { mutateAsync: useCreateProduct } = useCreateProductMutation();
-
+  // update user
+  const { mutateAsync: updateProduct } = useUpdateProductMutation(id);
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
       const data = await updateProduct({
         name,
         slug,
-        image,
+        ...image,
         CountryOrigin,
         category,
         description,
@@ -186,7 +187,9 @@ const AdminProduct = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="CountryOrigin">
                   <Form.Label>CountryOrigin</Form.Label>
-                  <Form.Control onChange={(e) => setCountryOrigin(e.target.value)} />
+                  <Form.Control
+                    onChange={(e) => setCountryOrigin(e.target.value)}
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="category">
                   <Form.Label>Category</Form.Label>
@@ -282,7 +285,9 @@ const AdminProduct = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="CountryOrigin">
                   <Form.Label>CountryOrigin</Form.Label>
-                  <Form.Control onChange={(e) => setCountryOrigin(e.target.value)} />
+                  <Form.Control
+                    onChange={(e) => setCountryOrigin(e.target.value)}
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="category">
                   <Form.Label>Category</Form.Label>

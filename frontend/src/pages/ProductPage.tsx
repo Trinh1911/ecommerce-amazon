@@ -23,7 +23,6 @@ const ProductPage = () => {
     isLoading,
     error,
   } = useGetProductDetailsBySlugQuery(slug!);
-  console.log("product", product);
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 

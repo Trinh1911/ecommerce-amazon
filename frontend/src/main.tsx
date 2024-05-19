@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
 import ProductPage from "./pages/ProductPage.tsx";
+import TypeProductPage from "./pages/TypeProductPage.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StoreProvider } from "./Store.tsx";
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index={true} element={<HomePage />} />
       <Route path="product/:slug" element={<ProductPage />} />
+      <Route path="/search/:category" element={<TypeProductPage />} />
       <Route path="cart" element={<CartPage />} />
       <Route path="whistlist" element={<WhistListPage />} />
       <Route path="signin" element={<SigninPage />} />
@@ -58,9 +60,8 @@ const router = createBrowserRouter(
         <Route path="/adminUser" element={<AdminUser />} />
         <Route path="/adminProduct" element={<AdminProduct />} />
         <Route path="/adminOrder" element={<AdminOrder />} />
-
       </Route>
-        <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPage />} />
 
       {/* <Route path="dashboard" element={<Dashboard />} /> */}
       {/* ... etc. */}

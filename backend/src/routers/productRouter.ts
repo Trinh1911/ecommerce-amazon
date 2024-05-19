@@ -30,6 +30,17 @@ productRouter.get(
     res.json(categories)
   })
 )
+productRouter.get(
+  '/categories/:category',
+  asyncHandler(async (req, res) => {
+    const product = await ProductModel.findOne({ category: req.params.category })
+    if (product) {
+      res.json(product)
+    } else {
+      res.status(404).json({ message: 'Product Not Found' })
+    }
+  })
+)
 //   create product
 productRouter.post(
   '/create-product',
