@@ -301,7 +301,19 @@ a.header-link:hover,
     font-size: 13px;
   }
 }
-
+.button-update {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1.6;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 22px;
+  background-color: rgb(25, 135, 84);
+  border: 1px solid rgb(25, 135, 84);
+  color: #fff;
+  border-radius: 50px;
+  float: right;
+}
 .card-title {
   color: #21313c;
   text-decoration: none;
@@ -313,13 +325,17 @@ a.header-link:hover,
   border-color: rgb(10, 173, 10);
   font-weight: 600;
   font-size: 13px;
-
+  
   &:hover {
     background-color: #099309;
     border-color: #088a08;
   }
 }
-
+.card-product .button-add { 
+  position: absolute;
+  bottom: 13px;
+  right: 16px;
+}
 .btn:disabled {
   background-color: #a7b1ae;
   border-color: #ecf0ef;
@@ -333,7 +349,7 @@ a.header-link:hover,
 }
 
 .add-L {
-  width: 276px;
+  width: 266px;
   height: 42px;
   font-size: 13px;
   padding: 4px 8px;
@@ -500,7 +516,7 @@ a.header-link:hover,
 
 .input-quantity {
   width: 44px;
-  font-size: 15px;
+  font-size: 17px;
   height: 40px;
   padding: 4px 8px;
   border: 1px solid #ecf0ef;

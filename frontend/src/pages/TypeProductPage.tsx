@@ -32,7 +32,7 @@ const TypeProductPage = () => {
       </Helmet>
 
       {/* Popular Products */}
-      <div className="container mx-20">
+      <div className="container mx-20 mb-5">
         <div className="mb-6 mb-24">
         <BreadcrumbComponent category={category} />
         </div>

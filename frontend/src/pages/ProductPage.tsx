@@ -171,6 +171,7 @@ const ProductPage = () => {
             <div className="mt-2 d-flex align-items-center mb-4">
               {product.countInStock > 0 && (
                 <Button
+                style={{position: 'unset'}}
                   className="button-add add-M mt-2"
                   onClick={() => addToCartHandler(addquantity)}
                 >

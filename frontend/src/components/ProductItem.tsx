@@ -49,7 +49,9 @@ const ProductItem = ({ product }: { product: Product }) => {
             className="card-img-top"
           />
         </Link>
-        <Card.Body style={{width: "204px"}}>
+        <Card.Body
+          style={{ width: "204px"}}
+        >
           <Link
             to={`/product/${product.slug}`}
             style={{ textDecoration: "none" }}
@@ -60,9 +62,7 @@ const ProductItem = ({ product }: { product: Product }) => {
             <i className="fas fa-eye "></i>
             <i
               className="fas fa-heart "
-              onClick={() =>
-                addToWhistList(convertProductToCartItem(product))
-              }
+              onClick={() => addToWhistList(convertProductToCartItem(product))}
             ></i>
           </div>
           <Rating rating={product.rating} numReviews={product.numReviews} />

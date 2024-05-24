@@ -70,7 +70,7 @@ export default function PlaceOrderPage() {
                 {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},
                 {cart.shippingAddress.country}
               </Card.Text>
-              <Link to="/shipping">Edit</Link>
+              <Link  to="/shipping" className='button-update'>Update</Link>
             </Card.Body>
           </Card>
 
@@ -80,7 +80,7 @@ export default function PlaceOrderPage() {
               <Card.Text>
                 <strong>Method:</strong> {cart.paymentMethod}
               </Card.Text>
-              <Link to="/payment">Edit</Link>
+              <Link to="/payment" className='button-update'>Update</Link>
             </Card.Body>
           </Card>
 
@@ -91,23 +91,23 @@ export default function PlaceOrderPage() {
                 {cart.cartItems.map((item) => (
                   <ListGroup.Item key={item._id}>
                     <Row className="align-items-center">
-                      <Col md={6}>
+                      <Col md={8} className="d-flex align-items-center">
                         <img
-                          src={item.image}
+                          src={item.image[0]}
                           alt={item.name}
                           className="img-fluid rounded thumbnail"
-                        ></img>{' '}
-                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                        ></img>
+                        <Link to={`/product/${item.slug}`} className="nav-link header-link">{item.name}</Link>
                       </Col>
-                      <Col md={3}>
+                      <Col md={2}>
                         <span>{item.quantity}</span>
                       </Col>
-                      <Col md={3}>${item.price}</Col>
+                      <Col md={2}>${item.price}</Col>
                     </Row>
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              <Link to="/cart">Edit</Link>
+              <Link to="/cart" className='button-update'>Update</Link>
             </Card.Body>
           </Card>
         </Col>
@@ -148,6 +148,7 @@ export default function PlaceOrderPage() {
                   <div className="d-grid">
                     <Button
                       type="button"
+                      className='button-add'
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0 || isLoading}
                     >
