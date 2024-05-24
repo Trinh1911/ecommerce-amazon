@@ -146,25 +146,25 @@ export default function OrderPage() {
             </Card.Body>
           </Card>
 
-          <Card className="mb-3">
-            <Card.Body>
+          <Card style={{ margin: "10px 0 50px" }}>
+            <Card.Body >
               <Card.Title>Items</Card.Title>
-              <ListGroup variant="flush">
+              <ListGroup variant="flush" >
                 {order.orderItems.map((item) => (
-                  <ListGroup.Item key={item._id}>
+                  <ListGroup.Item key={item._id} >
                     <Row className="align-items-center">
-                      <Col md={6}>
+                      <Col md={8} className="d-flex align-items-center">
                         <img
-                          src={item.image}
+                          src={item.image[0]}
                           alt={item.name}
                           className="img-fluid rounded thumbnail"
-                        ></img>{" "}
-                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                        ></img>
+                        <Link className="nav-link header-link" to={`/product/${item.slug}`}>{item.name}</Link>
                       </Col>
-                      <Col md={3}>
+                      <Col md={2}>
                         <span>{item.quantity}</span>
                       </Col>
-                      <Col md={3}>${item.price}</Col>
+                      <Col md={2}>${item.price}</Col>
                     </Row>
                   </ListGroup.Item>
                 ))}
@@ -218,7 +218,7 @@ export default function OrderPage() {
                         <PayPalButtons
                           {...paypalbuttonTransactionProps}
                         ></PayPalButtons>
-                        <Button onClick={testPayHandler}>Test Pay</Button>
+                        <Button className="button-add" onClick={testPayHandler}>Test Pay</Button>
                       </div>
                     )}
                     {loadingPay && <LoadingBox></LoadingBox>}

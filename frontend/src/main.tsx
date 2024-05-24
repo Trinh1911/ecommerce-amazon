@@ -22,6 +22,7 @@ import CartPage from "./pages/CartPage.tsx";
 import WhistListPage from "./pages/WhistListPage.tsx";
 import SigninPage from "./pages/SigninPage.tsx";
 import SignupPage from "./pages/SignupPage.tsx";
+import Test from "./pages/Test.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import ShippingAddressPage from "./pages/ShippingAddressPage.tsx";
 import PaymentMethodPage from "./pages/PaymentMethodPage.tsx";
@@ -46,6 +47,7 @@ const router = createBrowserRouter(
       <Route path="whistlist" element={<WhistListPage />} />
       <Route path="signin" element={<SigninPage />} />
       <Route path="signup" element={<SignupPage />} />
+      <Route path="test" element={<Test />} />
 
       <Route path="" element={<ProtectedRoute />}>
         <Route path="shipping" element={<ShippingAddressPage />} />
