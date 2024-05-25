@@ -3,6 +3,7 @@ import { Store } from "../Store";
 import AdminUser from "../components/Admin/AdminUser.tsx";
 import AdminProduct from "../components/Admin/AdminProduct.tsx";
 import AdminOrder from "../components/Admin/AdminOrder.tsx";
+import Chart from "../components/Admin/Chart.tsx";
 
 const Dashboard = () => {
   const {
@@ -36,7 +37,7 @@ const Dashboard = () => {
       case "order":
         return <AdminOrder />;
       default:
-        return <></>;
+        return <Chart/>;
     }
   };
   const handleClick = (key: any) => {
