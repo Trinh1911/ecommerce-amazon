@@ -1,56 +1,73 @@
-import React, { useState, useEffect } from "react";
-import { Line } from "react-chartjs-2";
-import { ChartData, ChartOptions } from "chart.js";
-import { CDBContainer } from "cdbreact";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
+import React from "react";
 
-interface LineChartData extends ChartData<"line"> {}
+const data = [
+  {
+    name: "Page A",
+    uv: 400,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Page B",
+    uv: 300,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: "Page C",
+    uv: 200,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: "Page D",
+    uv: 278,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: "Page E",
+    uv: 189,
+    pv: 4800,
+    amt: 2181,
+  },
+];
 
-const Test: React.FC = () => {
-  const [data] = useState<LineChartData>({
-    labels: [
-      "Eating",
-      "Drinking",
-      "Sleeping",
-      "Designing",
-      "Coding",
-      "Cycling",
-      "Running",
-    ],
-    datasets: [
-      {
-        label: "My First dataset",
-        backgroundColor: "rgba(194, 116, 161, 0.5)",
-        borderColor: "rgb(194, 116, 161)",
-        data: [65, 59, 90, 81, 56, 55, 40],
-      },
-      {
-        label: "My Second dataset",
-        backgroundColor: "rgba(71, 225, 167, 0.5)",
-        borderColor: "rgb(71, 225, 167)",
-        data: [28, 48, 40, 19, 96, 27, 100],
-      },
-    ],
-  });
-
-  const options: ChartOptions<"line"> = {
-    responsive: true,
-  };
-
-  // Use useEffect to perform cleanup
-  useEffect(() => {
-    return () => {
-      // Destroy all charts to clean up and avoid the canvas reuse error
-      if (Chart.instances.length > 0) {
-        Chart.instances.forEach((chart) => chart.destroy());
-      }
-    };
-  }, []);
-
+const Test = () => {
   return (
-    <CDBContainer>
-      <h3 className="mt-5">Line chart</h3>
-      <Line data={data} options={options} />
-    </CDBContainer>
+    <LineChart
+      width={500}
+      height={300}
+      data={data}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Line
+        type="monotone"
+        dataKey="uv"
+        stroke="#8884d8"
+        activeDot={{ r: 8 }}
+      />
+      <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
+    </LineChart>
   );
 };
 
